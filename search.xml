@@ -1,12 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>机器学习面试知识点总结</title>
+    <url>/ml-overview/</url>
+    <content><![CDATA[<p>对面试中机器学习模型常碰到的问题进行总结对比。</p>
+<a id="more"></a>
+
+<h2 id="模型汇总"><a href="#模型汇总" class="headerlink" title="模型汇总"></a>模型汇总</h2><ol>
+<li><h3 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h3><ol>
+<li><h4 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h4> 多叉树：按选择的特征个数分叉;<br> 信息增益：max（A）：I(D,A) = H(D) - H(D|A);<br> 无法处理连续特征;<br> 信息增益倾向于选择特征个数多的特征;<br> 无法处理缺失值;<br> 没考虑过拟合;<br> 不支持缺失值处理;</li>
+<li><h4 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h4> 多叉树，连续节点处为二叉树;<br> 信息增益比;<br> 剪枝：预剪枝，后剪枝;<br> 只能用于分类;<br> 支持缺失值处理;</li>
+<li><h4 id="cart"><a href="#cart" class="headerlink" title="cart"></a>cart</h4> 二叉树，支持缺失值处理;<br> 分类：gini系数;<br> 回归：均方差;</li>
+</ol>
+</li>
+<li><h3 id="Boost（改变样本分布）"><a href="#Boost（改变样本分布）" class="headerlink" title="Boost（改变样本分布）"></a>Boost（改变样本分布）</h3><ol>
+<li><h4 id="Adaboost"><a href="#Adaboost" class="headerlink" title="Adaboost"></a>Adaboost</h4><ul>
+<li>分类：<ul>
+<li>指数损失函数 + 加法模型 + 前向分步算法</li>
+<li>根据当前的学习误差率更新训练样本的权重</li>
+<li>样本权重w-&gt;分类器样本误差率e-&gt;分类器权重α-&gt;样本权重w（和前一个总分类器有关）</li>
+</ul>
+</li>
+<li>回归：<ul>
+<li>平方损失函数，拟合残差</li>
+<li>根据划分区域，搜索使得损失函数最小的取值 </li>
+</ul>
+</li>
+<li>弱学习器不固定；对异常点敏感，样本权重较高；精度高  </li>
+</ul>
+</li>
+<li><h4 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h4><p> 弱学习器固定为cart树;<br> 损失函数不固定;<br> 拟合损失函数的负梯度;<br> 分类：对数似然损失函数（指数损失变为adaboost）;<br> 回归：均方差，绝对损失;<br> 采样是不放回采样; </p>
+<pre><code>Q：怎样设置单棵树的停止生长条件？  
+A：节点分裂时的最小样本数，最大深度，最多叶子节点数，loss满足约束条件  
+
+Q：评估特征的权重大小  
+A：  
+1. 通过计算每个特征在训练集下的信息增益，最后计算每个特征信息增益与所有特征信息增益之和的比例为权重值；  
+2. 借鉴投票机制。用相同的gbdt参数对w每个特征训练出一个模型，然后在该模型下计算每个特征正确分类的个数，最后计算每个特征正确分类的个数与所有正确分类个数之和的比例为权重值。  
+
+Q：增加样本数量时，训练时长是线性增加吗？  
+A：不是。因为生成单棵决策树时，损失函数极小值与样本数量N不是线性相关  ？？？  
+
+Q：增加树的棵树时，训练时长是线性增加吗？  
+A：不是。因为每棵树的生成的时间复杂度不一样。   
+
+Q：如何防止过拟合  
+A：  
+1. 增加样本（data bias or small data的缘故），移除噪声。  
+2. 减少特征，保留重要的特征（可以用PCA等对特征进行降维）。  
+3. 对样本进行采样（类似bagging）。就是建树的时候，不是把所有的样本都作为输入，而是选择一个子集。  
+4. 对特征进行采样。类似样本采样一样,每次建树的时候，只对部分的特征进行切分。  
+5. 加正则项，剪枝  
+
+Q：gbdt在训练和预测的时候都用到了步长，这两个步长一样么？  
+A：一样。 ？？？  
+
+Q：gbdt中哪些部分可以并行？  
+A：  
+1. 计算每个样本的负梯度  
+2. 分裂挑选最佳特征及其分割点时，对特征计算相应的误差及均值时  
+3. 更新每个样本的负梯度时  
+4. 最后预测过程中，每个样本将之前的所有树的结果累加的时候  </code></pre></li>
+<li><h3 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h3></li>
+</ol>
+</li>
+<li><h3 id="图模型"><a href="#图模型" class="headerlink" title="图模型"></a>图模型</h3><ol>
+<li><h4 id="HMM"><a href="#HMM" class="headerlink" title="HMM"></a>HMM</h4><ul>
+<li>两个假设：<ul>
+<li>齐次马尔科夫链假设：<br>隐藏状态之和之前的一个有关</li>
+<li>观测独立假设：<br>观测状态之和当前的隐藏状态有关</li>
+</ul>
+</li>
+<li>三个问题：<ul>
+<li>已知参数，观测序列，求观测序列概率，前向后向算法</li>
+<li>已知观测序列，估计模型参数，EM算法</li>
+<li>已知参数，观测序列，推测状态序列，维特比算法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h3><p> 参数估计，极大似然估计<br> 推测状态序列，维特比算法<br> 特征函数设计</p>
+<p>HMM    生成模型，马尔可夫假设<br>CRF 判别模型，没有马尔可夫假设（所以容易更好的采纳上下文信息）</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="模型对比"><a href="#模型对比" class="headerlink" title="模型对比"></a>模型对比</h2><ol>
+<li><h3 id="LR-vs-SVM"><a href="#LR-vs-SVM" class="headerlink" title="LR vs SVM"></a>LR vs SVM</h3><ul>
+<li><p>不同</p>
+<ul>
+<li>LR的损失函数是Cross entropy loss，SVM的损失函数是Hinge loss，自带L2正则</li>
+<li>LR的解是受数据本身分布影响的，而SVM的解不受数据分布的影响（支持向量）</li>
+<li>LR的输出具有自然的概率意义，而SVM的输出不具有概率意义</li>
+<li>SVM依赖数据表达的距离测度，需要对数据normalization，LR则不需要</li>
+<li>SVM受惩罚系数C的影响较大，实验中需要做Validation，LR则不需要</li>
+<li>LR适合于大样本学习，SVM适合于小样本学习 ？？？</li>
+<li>SVM可以处理大型特征空间，LR对此性能不好 ？？？</li>
+<li><a href="https://shomy.top/2017/03/09/support-vector-regression/" target="_blank" rel="noopener">SVM 回归</a> </li>
+</ul>
+</li>
+<li><p>相同</p>
+<ul>
+<li>线性决策</li>
+<li>kernel trick，ker-SVM只需要计算支持向量的核函数；而<a href="https://shomy.top/2017/03/07/kernel-lr/" target="_blank" rel="noopener">ker-LR</a>需要所有的样本 ？？？</li>
+<li>都会受到outlier的影响</li>
+</ul>
+<p>只有将最优解w表示为xi的线性组合，才能够利用核函数K<br>如果样本数量小于特征数，那么就没必要选择非线性核，简单的使用线性核就可以了<br>如果样本数量大于特征数目，这时可以使用非线性核，将样本映射到更高维度，一般可以得到更好的结果</p>
+<p><a href="https://shomy.top/archives/page/2/" target="_blank" rel="noopener">https://shomy.top/archives/page/2/</a></p>
+</li>
+</ul>
+</li>
+<li><h3 id="LR-vs-决策树"><a href="#LR-vs-决策树" class="headerlink" title="LR vs 决策树"></a>LR vs 决策树</h3><ul>
+<li>决策树可以处理缺失值，LR不可以</li>
+<li>LR线性决策边界，可能欠拟合（但是可以核方法），决策树非线性决策边界，但是对线性拟合效果容易过拟合。（如；x+y=1）（但是可以剪枝，正则，bagging）</li>
+<li>LR有概率值解释，决策树有决策过程直观解释</li>
+<li>LR对数据整体结构的分析优于决策树，而决策树对局部结构的分析优于LR。</li>
+<li>LR对极值比较敏感，容易受极端值的影响</li>
+<li>决策树容易过拟合；</li>
+<li>GDBT + LR 融合</li>
+</ul>
+</li>
+<li><h3 id="RF-vs-GDBT"><a href="#RF-vs-GDBT" class="headerlink" title="RF vs GDBT"></a>RF vs GDBT</h3><ul>
+<li>不同<ul>
+<li>组成随机森林的树可以并行生成，而GBDT是串行生成</li>
+<li>随机森林的结果是多数表决表决的，而GBDT则是多棵树累加之和</li>
+<li>随机森林对异常值不敏感，而GBDT对异常值比较敏感</li>
+<li>随机森林是通过减少模型的方差来提高性能，而GBDT是减少模型的偏差来提高性能的</li>
+<li>随机森林不需要进行数据预处理，即特征归一化。GBDT则需要进行特征归一化 ？？？为什么要归一化</li>
+<li>组成随机森林的树可以分类树也可以是回归树，GBDT由cart树组成</li>
+</ul>
+</li>
+<li>相同<ul>
+<li>集成算法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="XgBoost-vs-GBDT"><a href="#XgBoost-vs-GBDT" class="headerlink" title="XgBoost vs GBDT"></a>XgBoost vs GBDT</h3></li>
+</ol>
+<p><a href="https://zhuanlan.zhihu.com/p/46831267" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/46831267</a><br><a href="https://zhuanlan.zhihu.com/p/34679467" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34679467</a></p>
+]]></content>
+      <categories>
+        <category>ML</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>ML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Transformer详解：各个特征维度分析推导</title>
+    <url>/transformer/</url>
+    <content><![CDATA[<p>谷歌在文章《Attention is all you need》中提出的transformer模型。如图主要架构：同样为encoder-decoder模式，左边部分是encoder，右边部分是decoder。<br>TensorFlow代码：<em><a href="https://www.github.com/kyubyong/transformer" target="_blank" rel="noopener">https://www.github.com/kyubyong/transformer</a></em><br><img src="/images/transformer1.png" alt=""></p>
+<a id="more"></a>
+
+<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>用 sentencepiece 进行分词。</p>
+<h1 id="Encoder-输入"><a href="#Encoder-输入" class="headerlink" title="Encoder 输入"></a>Encoder 输入</h1><p>初始输入为待翻译语句的embedding矩阵，由于句子长度不一致，需要做统一长度处理，长度取maxlength1，不够长的句子padding 0值，句尾加上 <code>&lt;/s&gt;</code> 。</p>
+<pre><code>d = 512, [batchsize，maxlen1，d]</code></pre><p>考虑到词语间的相对位置信息，还要加上语句的position<br>encoding，由函数形式直接求出。</p>
+<pre><code>PE(pos,2i) = sin(pos/10002i/d)
+PE(pos,2i+1) = cos(pos/10002i/d)</code></pre><p>Padding的值不做position encoding。 <code>[batchsize，maxlen1，d]</code> ，最终:</p>
+<pre><code>encoder input = position encoding + input embedding。
+encoder input : [batchsize，maxlen1，d]</code></pre><h1 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h1><p>Encoder 由N = 6个相同的layer连接组成。每个layer中有两个sublayer，分别是multihead<br>self-attention以及FFN。</p>
+<pre><code>Q = K = V = input
+MultiHead(Q, K, V) = concat(head1, …, headh)Wo
+headi = Attention(QW­iQ，KW­ik，VW­iV)
+Attention(Q, K, V) = softmax(QKT/$$\sqrt{d}$$) V</code></pre><p><img src="/images/transformer1.png" alt=""><br><img src="/images/transformer3.png" alt=""><br><img src="/images/transformer4.png" alt=""></p>
+<p>softmax前要做key_mask，把pad 0 的地方赋值为-inf，softmax后权重做query mask，赋值0。</p>
+<pre><code>h = 8
+W­iQ, W­ik, W­iV : [d, d/h]
+Q : [maxlen_q, d]
+K = V : [maxlen_k, d]
+Maxlen_q = maxlen_k so: Q = K = V : [maxlen1, d]
+QW­kQ，KW­ik，VW­iV : [maxlen1, d/h]
+headi : [maxlen1, d/h] \* [d/h, maxlen1] \* [maxlen1, d/h] = [maxlen1, d/h]
+Wo : [d, d]
+MultiHead(Q,K,V): [maxlen, d]</code></pre><p><code>Softmax([maxlen_q, maxlen_k])</code> 在最后一个维度即 <code>maxlen_k</code> 上做 <code>softmax</code>。<br>position-wise是因为处理的attention输出是某一个位置i的attention输出。</p>
+<pre><code>FFN(x) = ReLU ( xW1 + b1 ) \* W2 + b2
+ReLU(x) = max( 0, x )
+dff = 4 \* d = 2048
+W1 : [d, dff]
+W2 : [dff, d]</code></pre><p>流程：</p>
+<pre><code>Input -&gt; dropout -&gt;
+(
+multihead self-attention -&gt; dropout -&gt; residual connection -&gt; LN -&gt;
+FFN-&gt; dropout -&gt; residual connection -&gt; LN -&gt;
+) * 6
+-&gt; memory [batchsize，maxlen，d]</code></pre><p>代码中在multihead attention中对score做dropout，FFN后没有dropout，但文章说每个sublayer的output都有一个dropout。</p>
+<h1 id="Decoder-输入"><a href="#Decoder-输入" class="headerlink" title="Decoder 输入"></a>Decoder 输入</h1><h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>目标句子首尾分别加上 <code>&lt;s&gt;</code> , <code>&lt;/s&gt;</code>。</p>
+<pre><code>Decoder input = Output embedding + position encoding
+Decoder input : [batchsize，maxlen2，d]</code></pre><h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><p>初始向量为<code>&lt;s&gt;</code>对应embedding，之后将前一步的输出拼接到当前的所有预测构成当前的decoder输入。</p>
+<h2 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h2><p>Decoder由N = 6 个相同的layer组成，每个layer中有三个sublayer，分别是multihead self-attention, mutihead attention以及FFN。</p>
+<pre><code>decoder input -&gt; dropout -&gt;
+(
+   Masked multihead self-attention(dec, dec, dec) = dec-&gt; dropout -&gt;
+   multihead attention(dec, memory, memory) -&gt; dropout -&gt; residual connection
+   -&gt; LN -&gt; FFN -&gt; dropout -&gt; residual connection -&gt; LN -&gt;
+) * 6
+-&gt; dec -&gt; linear -&gt; softmax</code></pre><p>Self-attention 的mask为一个和dec相同维度的上三角全为-inf的矩阵。</p>
+<pre><code>Linear( x ) = xW
+Dec : [batchsize，maxlen2，d]
+W : [d, vocabsize]</code></pre><p>W为词汇表embedding矩阵的转置, 输入输出的词汇表embedding矩阵为W。即三个参数共享。</p>
+<pre><code>Linear( x ) : [batchsize，maxlen2，vocabsize]</code></pre><p>Softmax函数：</p>
+<center>
+$p\left( k\|x \right)=\frac{\exp({{z}_{k}})}{\sum\nolimits_{i=1}^{K}{\exp ({{z}_{i}})}}$
+</center>
+其中zi一般叫做 logits，即未被归一化的对数概率。
+
+<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><p>损失函数：cross entropy。用p代表predicted probability，用q代表groundtruth。即：</p>
+<center>$cross\_entropy\_loss=\sum\limits_{k=1}^{K}{q\left( k\|x\right)\log (p\left( k\|x \right))}$</center>
+
+
+<p>groundtruth为one-hot，即每个样本只有惟一的类别，$q(k)={{\delta}_{k,y}}$，y是真实类别。</p>
+<center>${{\delta }_{k,y}}\text{=}\left\{\begin{matrix} 1,k=y \\0,k\ne y \\\end{matrix} \right.$</center>
+
+
+<p>对目标句子onehot 做labelmsmooth用$\tilde{q}(k|x)$代替$q(k|x)$。（为了正则化，防止过拟合）</p>
+<center>$\tilde{q}(k\|x)=(1-\varepsilon ){{\delta }_{k,y}}+\varepsilon u(k)$</center>
+
+
+<p>可以理解为，对于$q(k)={{\delta}_{k,y}}$函数分布的真实标签，将它变成以如下方式获得：首先从标注的真实标签的$\delta$分布中取定，然后以一定的概率$\varepsilon$，将其替换为在$u(k)$分布中的随机变量。$u(k)$为均匀分布，即$u(k)=1/K$</p>
+<h1 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h1><p>Adam优化器：<br><img src="/images/transformer5.png" alt=""><br>学习率使用warm up learning rate:</p>
+<pre><code>learningrate = dmodel-0.5 \* min ( step_num-0.5, step_num \* warmup_steps-1.5 )
+warmup_steps ：4000</code></pre>]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>transoformer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MarkDown 使用细节</title>
     <url>/markdown/</url>
-    <content><![CDATA[<p>行内标签</p>
+    <content><![CDATA[<p>记录使用遇到的一些常用的MarkDown命令</p>
+<a id="more"></a>
+
+<p>行内标签</p>
 <pre><code>`&lt;你的 GitHub 用户名&gt;.github.io`</code></pre><p>文字居中</p>
-<pre><code>&lt;center&gt;文字    &lt;/center&gt;</code></pre><a id="more"></a>
-]]></content>
+<pre><code>&lt;center&gt;文字    &lt;/center&gt;</code></pre>]]></content>
       <categories>
         <category>blog</category>
       </categories>
@@ -17,11 +248,12 @@
   <entry>
     <title>常用句法分析工具包使用说明：Hanlp、StanfordNLP等</title>
     <url>/parser/</url>
-    <content><![CDATA[<h1 id="Hanlp"><a href="#Hanlp" class="headerlink" title="Hanlp"></a>Hanlp</h1><p>pip install pyhanlp 安装即可<br>项目地址：<a href="https://github.com/hankcs/pyhanlp" target="_blank" rel="noopener">https://github.com/hankcs/pyhanlp</a></p>
-<p><strong>基于神经网络的高性能依存句法分析器</strong></p>
-<p>输出为CONLL格式中，每个词语占一行，无值列用下划线代替，列的分隔符为制表符 <code>&#39;\t&#39;</code> ，行的分隔符为换行符 <code>&#39;\n&#39;</code>；句子与句子之间用空行分隔。  </p>
+    <content><![CDATA[<p>对比各个常用的自然语言处理工具包中的句法分析模块。</p>
 <a id="more"></a>
-<p>CONLL标注格式包含10列，分别为：  </p>
+
+<h1 id="Hanlp"><a href="#Hanlp" class="headerlink" title="Hanlp"></a>Hanlp</h1><p>pip install pyhanlp 安装即可<br>项目地址：<a href="https://github.com/hankcs/pyhanlp" target="_blank" rel="noopener">https://github.com/hankcs/pyhanlp</a></p>
+<p><strong>基于神经网络的高性能依存句法分析器</strong></p>
+<p>输出为CONLL格式中，每个词语占一行，无值列用下划线代替，列的分隔符为制表符 <code>&#39;\t&#39;</code> ，行的分隔符为换行符 <code>&#39;\n&#39;</code>；句子与句子之间用空行分隔。<br>CONLL标注格式包含10列，分别为：  </p>
 <table>
 <thead>
 <tr>
@@ -282,11 +514,12 @@ Done loading processors!
   <entry>
     <title>GitHub Pages + Hexo + Next：博客搭建、功能设置及美化</title>
     <url>/next/</url>
-    <content><![CDATA[<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<h2 id="搭建博客框架"><a href="#搭建博客框架" class="headerlink" title="搭建博客框架"></a>搭建博客框架</h2><p>搭建流程参照官网中文说明文档：</p>
-<pre><code>https://hexo.io/zh-cn/docs/</code></pre><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>将搭建在本地的博客通过GitHub Pages部署在个人的GitHub中。从而能通过 <code>&lt;你的 GitHub 用户名&gt;.github.io</code> 域名访问博客</p>
+    <content><![CDATA[<p>使用Hexo博客框架搭建自己的个人博客，并部署到个人的GitHub上，选用NexT主题，添加一些使用小功能并进行界面的美化。</p>
 <a id="more"></a>
 
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="搭建博客框架"><a href="#搭建博客框架" class="headerlink" title="搭建博客框架"></a>搭建博客框架</h2><p>搭建流程参照官网中文说明文档：</p>
+<pre><code>https://hexo.io/zh-cn/docs/</code></pre><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>将搭建在本地的博客通过GitHub Pages部署在个人的GitHub中。从而能通过 <code>&lt;你的 GitHub 用户名&gt;.github.io</code> 域名访问博客</p>
 <p>参考教程：</p>
 <pre><code>https://www.jianshu.com/p/05289a4bc8b2
 https://www.cnblogs.com/jackyroc/p/7681938.html</code></pre><h1 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a>Next 主题</h1><p>部署完成后，即可对博客做一些细节上的优化，增添小工具以及美化界面</p>
@@ -344,8 +577,53 @@ permalink: :title/</code></pre><p>参考:</p>
   total_views: true
   total_views_icon: eye
   post_views: true
-  post_views_icon: eye</code></pre><p>最后上一个看到的大神的网页：</p>
-<pre><code>https://felixxiong.github.io/wechatpublic/</code></pre>]]></content>
+  post_views_icon: eye</code></pre><h2 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h2><p>Next主题已经集成了GitTalk,直接使用即可。首先，注册GitHub OAuth Apps，生成<code>client_id</code> 和 <code>client_secret</code> 。再修改主题配置文件：</p>
+<pre><code>gitalk:
+  enable: true
+  github_id: troublemeeter # GitHub repo owner
+  repo: troublemeeter.github.io # Repository name to store issues
+  client_id: # GitHub Application Client ID
+  client_secret: # GitHub Application Client Secret
+  admin_user: troublemeeter # GitHub repo owner and collaborators, only these guys can initialize gitHub issues
+  distraction_free_mode: true # Facebook-like distraction free mode
+  # Gitalk&apos;s display language depends on user&apos;s browser or system environment
+  # If you want everyone visiting your site to see a uniform language, you can set a force language value
+  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
+  language:</code></pre><p>参考教程：</p>
+<pre><code>https://mrluyc.github.io/2019/07/30/HexoNexT%E9%9B%86%E6%88%90Gitalk/</code></pre><h2 id="数学公式支持"><a href="#数学公式支持" class="headerlink" title="数学公式支持"></a>数学公式支持</h2><p>安装 <code>hexo-math</code>：</p>
+<pre><code>$ npm install hexo-math --save</code></pre><p>在配置文件加入设置：</p>
+<pre><code>math:
+  engine: &apos;mathjax&apos; # or &apos;katex&apos;
+  mathjax:
+    # src: custom_mathjax_source
+    config:
+      # MathJax config</code></pre><p>在Next主题配置文件更改设置为：</p>
+<pre><code># Math Formulas Render Support
+math:
+  # Default (true) will load mathjax / katex script on demand.
+  # That is it only render those page which has `mathjax: true` in Front-matter.
+  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
+  per_page: true
+  # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.
+  mathjax:
+    enable: true
+    # See: https://mhchem.github.io/MathJax-mhchem/
+    mhchem: false</code></pre><p>在需要加载mathjax的文件的头部加入<code>mathjax: true</code>：</p>
+<pre><code>---
+title: transformer
+date: 2019-12-10 17:50:42
+tags:
+mathjax: true
+---</code></pre><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>不喜欢五颜六色，所以暂时未处理。</p>
+<h2 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h2><p>制作好微信收款码和支付宝收款码，保存至<code>themes/next/source/images</code>。并修改主题配置文件如下：</p>
+<pre><code># Reward (Donate)
+# Front-matter variable (unsupport animation).
+reward_settings:
+  # If true, reward will be displayed in every article by default.
+  enable: true
+  animation: true
+  comment: 🤣~疯狂暗示~🤣</code></pre><p>效果如下，不信试一试~</p>
+]]></content>
       <categories>
         <category>blog</category>
       </categories>
@@ -353,27 +631,5 @@ permalink: :title/</code></pre><p>参考:</p>
         <tag>hexo</tag>
         <tag>next</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
   </entry>
 </search>
