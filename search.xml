@@ -1,20 +1,364 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>hexo+next：博客搭建以及功能设置</title>
-    <url>/2019/12/10/next/</url>
-    <content><![CDATA[]]></content>
+    <title>MarkDown 使用细节</title>
+    <url>/markdown/</url>
+    <content><![CDATA[<p>行内标签</p>
+<pre><code>`&lt;你的 GitHub 用户名&gt;.github.io`</code></pre><p>文字居中</p>
+<pre><code>&lt;center&gt;文字    &lt;/center&gt;</code></pre><a id="more"></a>
+]]></content>
       <categories>
         <category>blog</category>
       </categories>
       <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用句法分析工具包使用说明：Hanlp、StanfordNLP等</title>
+    <url>/parser/</url>
+    <content><![CDATA[<h1 id="Hanlp"><a href="#Hanlp" class="headerlink" title="Hanlp"></a>Hanlp</h1><p>pip install pyhanlp 安装即可<br>项目地址：<a href="https://github.com/hankcs/pyhanlp" target="_blank" rel="noopener">https://github.com/hankcs/pyhanlp</a></p>
+<p><strong>基于神经网络的高性能依存句法分析器</strong></p>
+<p>输出为CONLL格式中，每个词语占一行，无值列用下划线代替，列的分隔符为制表符 <code>&#39;\t&#39;</code> ，行的分隔符为换行符 <code>&#39;\n&#39;</code>；句子与句子之间用空行分隔。  </p>
+<a id="more"></a>
+<p>CONLL标注格式包含10列，分别为：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">FORM</th>
+<th align="center">LEMMA</th>
+<th align="center">CPOSTAG</th>
+<th align="center">POSTAG</th>
+<th align="center">FEATS</th>
+<th align="center">HEAD</th>
+<th align="center">DEPREL</th>
+<th align="center">PHEAD</th>
+<th align="center">PDEPREL</th>
+</tr>
+</thead>
+</table>
+<p>只用到前８列，其含义分别为：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">id</th>
+<th align="center">name</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">ID</td>
+<td align="center">当前词在句子中的序号，１开始.</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">FORM</td>
+<td align="center">当前词语或标点</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">LEMMA</td>
+<td align="center">当前词语（或标点）的原型或词干，在中文中，此列与FORM相同</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">CPOSTAG</td>
+<td align="center">当前词语的词性（粗粒度）</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">POSTAG</td>
+<td align="center">当前词语的词性（细粒度）</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">FEATS</td>
+<td align="center">句法特征，在本次评测中，此列未被使用，全部以下划线代替。</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">HEAD</td>
+<td align="center">当前词语的中心词</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">DEPREL</td>
+<td align="center">当前词语与中心词的依存关系</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyhanlp <span class="keyword">import</span> *</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(HanLP.parseDependency(<span class="string">"徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"</span>))</span></pre></td></tr></table></figure>
+
+<pre><code>1    徐先生    徐先生    nh    nr    _    4    主谓关系    _    _
+2    还    还    d    d    _    4    状中结构    _    _
+3    具体    具体    a    ad    _    4    状中结构    _    _
+4    帮助    帮助    v    v    _    0    核心关系    _    _
+5    他    他    r    r    _    4    兼语    _    _
+6    确定    确定    v    v    _    4    动宾关系    _    _
+7    了    了    u    u    _    6    右附加关系    _    _
+8    把    把    p    p    _    15    状中结构    _    _
+9    画    画    v    v    _    8    介宾关系    _    _
+10    雄鹰    雄鹰    n    n    _    9    动宾关系    _    _
+11    、    、    wp    w    _    12    标点符号    _    _
+12    松鼠    松鼠    n    n    _    10    并列关系    _    _
+13    和    和    c    c    _    14    左附加关系    _    _
+14    麻雀    麻雀    n    n    _    10    并列关系    _    _
+15    作为    作为    v    v    _    6    动宾关系    _    _
+16    主攻    主攻    v    vn    _    17    定中关系    _    _
+17    目标    目标    n    n    _    15    动宾关系    _    _
+18    。    。    wp    w    _    4    标点符号    _    _</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sentence = HanLP.parseDependency(<span class="string">"徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> sentence.iterator():  <span class="comment"># 通过dir()可以查看sentence的方法</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(<span class="string">"%s --(%s)--&gt; %s"</span> % (word.LEMMA, word.DEPREL, word.HEAD.LEMMA))</span></pre></td></tr></table></figure>
+
+<pre><code>徐先生 --(主谓关系)--&gt; 帮助
+还 --(状中结构)--&gt; 帮助
+具体 --(状中结构)--&gt; 帮助
+帮助 --(核心关系)--&gt; ##核心##
+他 --(兼语)--&gt; 帮助
+确定 --(动宾关系)--&gt; 帮助
+了 --(右附加关系)--&gt; 确定
+把 --(状中结构)--&gt; 作为
+画 --(介宾关系)--&gt; 把
+雄鹰 --(动宾关系)--&gt; 画
+、 --(标点符号)--&gt; 松鼠
+松鼠 --(并列关系)--&gt; 雄鹰
+和 --(左附加关系)--&gt; 麻雀
+麻雀 --(并列关系)--&gt; 雄鹰
+作为 --(动宾关系)--&gt; 确定
+主攻 --(定中关系)--&gt; 目标
+目标 --(动宾关系)--&gt; 作为
+。 --(标点符号)--&gt; 帮助</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(dir(sentence))</span></pre></td></tr></table></figure>
+
+<pre><code>[&apos;__class__&apos;, &apos;__delattr__&apos;, &apos;__dict__&apos;, &apos;__dir__&apos;, &apos;__doc__&apos;, &apos;__eq__&apos;, &apos;__format__&apos;, &apos;__ge__&apos;, &apos;__getattribute__&apos;, &apos;__gt__&apos;, &apos;__hash__&apos;, &apos;__init__&apos;, &apos;__init_subclass__&apos;, &apos;__javaclass__&apos;, &apos;__javaobject__&apos;, &apos;__le__&apos;, &apos;__lt__&apos;, &apos;__metaclass__&apos;, &apos;__module__&apos;, &apos;__ne__&apos;, &apos;__new__&apos;, &apos;__reduce__&apos;, &apos;__reduce_ex__&apos;, &apos;__repr__&apos;, &apos;__setattr__&apos;, &apos;__sizeof__&apos;, &apos;__str__&apos;, &apos;__subclasshook__&apos;, &apos;__weakref__&apos;, &apos;edgeArray&apos;, &apos;equals&apos;, &apos;findChildren&apos;, &apos;forEach&apos;, &apos;getClass&apos;, &apos;getEdgeArray&apos;, &apos;getWordArray&apos;, &apos;getWordArrayWithRoot&apos;, &apos;hashCode&apos;, &apos;iterator&apos;, &apos;notify&apos;, &apos;notifyAll&apos;, &apos;spliterator&apos;, &apos;toString&apos;, &apos;wait&apos;, &apos;word&apos;, &apos;wordArray&apos;, &apos;wordArrayWithRoot&apos;]</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">word_array = sentence.getWordArray()</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="comment"># print(word_array[0])</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> word_array:</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(<span class="string">"%s --(%s)--&gt; %s"</span> % (word.LEMMA, word.DEPREL, word.HEAD.LEMMA))</span></pre></td></tr></table></figure>
+
+<pre><code>徐先生 --(主谓关系)--&gt; 帮助
+还 --(状中结构)--&gt; 帮助
+具体 --(状中结构)--&gt; 帮助
+帮助 --(核心关系)--&gt; ##核心##
+他 --(兼语)--&gt; 帮助
+确定 --(动宾关系)--&gt; 帮助
+了 --(右附加关系)--&gt; 确定
+把 --(状中结构)--&gt; 作为
+画 --(介宾关系)--&gt; 把
+雄鹰 --(动宾关系)--&gt; 画
+、 --(标点符号)--&gt; 松鼠
+松鼠 --(并列关系)--&gt; 雄鹰
+和 --(左附加关系)--&gt; 麻雀
+麻雀 --(并列关系)--&gt; 雄鹰
+作为 --(动宾关系)--&gt; 确定
+主攻 --(定中关系)--&gt; 目标
+目标 --(动宾关系)--&gt; 作为
+。 --(标点符号)--&gt; 帮助</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 还可以直接遍历子树，从某棵子树的某个节点一路遍历到虚根</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">CoNLLWord = JClass(<span class="string">"com.hankcs.hanlp.corpus.dependency.CoNll.CoNLLWord"</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">head = word_array[<span class="number">15</span>]</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> head.HEAD:</span></pre></td></tr><tr><td class="code"><pre><span class="line">    head = head.HEAD</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">if</span> (head == CoNLLWord.ROOT):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(head.LEMMA)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(<span class="string">"%s --(%s)--&gt; "</span> % (head.LEMMA, head.DEPREL))</span></pre></td></tr></table></figure>
+
+<pre><code>目标 --(动宾关系)--&gt; 
+作为 --(动宾关系)--&gt; 
+确定 --(动宾关系)--&gt; 
+帮助 --(核心关系)--&gt; 
+##核心##</code></pre><h1 id="StanfordNLP"><a href="#StanfordNLP" class="headerlink" title="StanfordNLP"></a>StanfordNLP</h1><p>pip install stanfordnlp 安装即可<br>项目地址：<a href="https://github.com/stanfordnlp/stanfordnlp" target="_blank" rel="noopener">https://github.com/stanfordnlp/stanfordnlp</a><br>依存句法关系符号解释：<a href="https://www.cnblogs.com/sherry-yang/p/9061341.html" target="_blank" rel="noopener">https://www.cnblogs.com/sherry-yang/p/9061341.html</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> stanfordnlp</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nlp = stanfordnlp.Pipeline(lang=<span class="string">'zh'</span>)</span></pre></td></tr></table></figure>
+
+<pre><code>Use device: gpu
+---
+Loading: tokenize
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_tokenizer.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+---
+Loading: pos
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_tagger.pt&apos;, &apos;pretrain_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd.pretrain.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+---
+Loading: lemma
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_lemmatizer.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+Building an attentional Seq2Seq model...
+Using a Bi-LSTM encoder
+Using soft attention for LSTM.
+Finetune all embeddings.
+[Running seq2seq lemmatizer with edit classifier]
+---
+Loading: depparse
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_parser.pt&apos;, &apos;pretrain_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd.pretrain.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+Done loading processors!
+---</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">doc = nlp(<span class="string">"徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">doc.sentences[<span class="number">0</span>].print_dependencies()</span></pre></td></tr></table></figure>
+
+<pre><code>(&apos;徐&apos;, &apos;2&apos;, &apos;nmod&apos;)
+(&apos;先生&apos;, &apos;4&apos;, &apos;nsubj&apos;)
+(&apos;还&apos;, &apos;4&apos;, &apos;mark&apos;)
+(&apos;具体&apos;, &apos;0&apos;, &apos;root&apos;)
+(&apos;帮助&apos;, &apos;4&apos;, &apos;obj&apos;)
+(&apos;他&apos;, &apos;7&apos;, &apos;nsubj&apos;)
+(&apos;确定&apos;, &apos;4&apos;, &apos;ccomp&apos;)
+(&apos;了&apos;, &apos;7&apos;, &apos;case:aspect&apos;)
+(&apos;把&apos;, &apos;15&apos;, &apos;aux:caus&apos;)
+(&apos;画雄鹰&apos;, &apos;15&apos;, &apos;obj&apos;)
+(&apos;、&apos;, &apos;12&apos;, &apos;punct&apos;)
+(&apos;松鼠&apos;, &apos;10&apos;, &apos;conj&apos;)
+(&apos;和&apos;, &apos;14&apos;, &apos;cc&apos;)
+(&apos;麻雀&apos;, &apos;10&apos;, &apos;conj&apos;)
+(&apos;作&apos;, &apos;7&apos;, &apos;ccomp&apos;)
+(&apos;为&apos;, &apos;15&apos;, &apos;mark&apos;)
+(&apos;主攻&apos;, &apos;18&apos;, &apos;nmod&apos;)
+(&apos;目标&apos;, &apos;16&apos;, &apos;obj&apos;)
+(&apos;。&apos;, &apos;4&apos;, &apos;punct&apos;)</code></pre><h1 id="HIT-LTP"><a href="#HIT-LTP" class="headerlink" title="HIT LTP"></a>HIT LTP</h1><p>项目地址：  </p>
+<ul>
+<li><a href="https://github.com/HIT-SCIR/pyltp" target="_blank" rel="noopener">https://github.com/HIT-SCIR/pyltp</a>  </li>
+<li><a href="https://pyltp.readthedocs.io/zh_CN/latest/" target="_blank" rel="noopener">https://pyltp.readthedocs.io/zh_CN/latest/</a>  </li>
+</ul>
+<p>安装步骤：</p>
+<ul>
+<li>pip install pyltp</li>
+<li>下载模型文件：<a href="http://ltp.ai/download.html" target="_blank" rel="noopener">七牛云</a>，当前模型版本 3.4.0</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>arc.head 表示依存弧的父节点词的索引。ROOT节点的索引是0，第一个词开始的索引依次为1、2、3…  </li>
+<li>arc.relation 表示依存弧的关系。  </li>
+</ul>
+<p>标注集请参考: <a href="https://ltp.readthedocs.io/zh_CN/latest/appendix.html#id5" target="_blank" rel="noopener">https://ltp.readthedocs.io/zh_CN/latest/appendix.html#id5</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyltp <span class="keyword">import</span> Parser</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyltp <span class="keyword">import</span> Segmentor</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyltp <span class="keyword">import</span> Postagger</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dependency_parser</span><span class="params">(sentences)</span>:</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    output = []</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">for</span> sentence <span class="keyword">in</span> sentences:</span></pre></td></tr><tr><td class="code"><pre><span class="line">        parser = Parser()</span></pre></td></tr><tr><td class="code"><pre><span class="line">        parser.load(<span class="string">'./ltp_data_v3.4.0/parser.model'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        segmentor = Segmentor() </span></pre></td></tr><tr><td class="code"><pre><span class="line">        segmentor.load(<span class="string">'./ltp_data_v3.4.0/cws.model'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        postagger = Postagger() </span></pre></td></tr><tr><td class="code"><pre><span class="line">        postagger.load(<span class="string">'./ltp_data_v3.4.0/pos.model'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        words = segmentor.segment(sentence)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        postags = postagger.postag(words)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        arcs = parser.parse(words, postags)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        output.append(&#123;<span class="string">'words'</span>:words,</span></pre></td></tr><tr><td class="code"><pre><span class="line">                       <span class="string">'postags'</span>:postags,</span></pre></td></tr><tr><td class="code"><pre><span class="line">                       <span class="string">'arcs'</span>:arcs</span></pre></td></tr><tr><td class="code"><pre><span class="line">                      &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="comment">#         print(' '.join(output[0]['words']))</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="comment">#         print(' '.join(output[0]['postags']))</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    segmentor.release() </span></pre></td></tr><tr><td class="code"><pre><span class="line">    postagger.release()</span></pre></td></tr><tr><td class="code"><pre><span class="line">    parser.release()</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">return</span> output</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sentences = [<span class="string">'徐先生还具体帮助他确定了把画雄鹰，松鼠和麻雀作为主攻目标。'</span>]</span></pre></td></tr><tr><td class="code"><pre><span class="line">output = dependency_parser(sentences)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Arcs = [each[<span class="string">'arcs'</span>] <span class="keyword">for</span> each <span class="keyword">in</span> output]</span></pre></td></tr><tr><td class="code"><pre><span class="line">[<span class="string">" "</span>.join(<span class="string">"%d:%s"</span> % (arc.head, arc.relation) <span class="keyword">for</span> arc <span class="keyword">in</span> arcs) <span class="keyword">for</span> arcs <span class="keyword">in</span> Arcs]</span></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[&apos;2:ATT 5:SBV 4:ADV 5:ADV 0:HED 5:DBL 5:VOB 7:RAD 10:ADV 7:VOB 10:VOB 5:WP 16:SBV 15:LAD 13:COO 5:COO 18:ATT 16:VOB 5:WP&apos;]</code></pre><h1 id="FudanNLP-FNLP"><a href="#FudanNLP-FNLP" class="headerlink" title="FudanNLP (FNLP)"></a>FudanNLP (FNLP)</h1><p><a href="https://github.com/FudanNLP/fnlp" target="_blank" rel="noopener">https://github.com/FudanNLP/fnlp</a><br>java 接口，且不再更新，现在已经推出FastNLP</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>parser</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQuAD2.0 刷榜top3模型分析</title>
+    <url>/SQuAD2-0/</url>
+    <content><![CDATA[<p>由于<a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank" rel="noopener">SQuAD2.0榜单</a>一直在更新，所以top3模型也在更新。</p>
+<a id="more"></a>
+<h2 id="top1-BERT-DAE-AoA"><a href="#top1-BERT-DAE-AoA" class="headerlink" title="top1: BERT + DAE + AoA"></a>top1: BERT + DAE + AoA</h2><ul>
+<li>AoA: attention over attention [1]</li>
+<li>DAE: DA Enhanced<ul>
+<li>Data Augmentation</li>
+<li>Domain Adaptation<br><img src="/images/aoa.png" alt="AoA"></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.infoq.cn/article/M7NpCAAMrPzRo-RViOKs" target="_blank" rel="noopener">https://www.infoq.cn/article/M7NpCAAMrPzRo-RViOKs</a><br><a href="https://zhuanlan.zhihu.com/p/27361305" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27361305</a></p>
+<pre><code>[1] Cui Y, Chen Z, Wei S, et al. Attention-over-attention neural networks for reading comprehension[J]. arXiv preprint arXiv:1607.04423, 2016.</code></pre><h2 id="top2-BERT-ConvLSTM-MTL-Verifier"><a href="#top2-BERT-ConvLSTM-MTL-Verifier" class="headerlink" title="top2: BERT + ConvLSTM + MTL + Verifier"></a>top2: BERT + ConvLSTM + MTL + Verifier</h2><ul>
+<li>MTL: 多任务学习<ul>
+<li><del>预测一个问题是否可答</del></li>
+<li><del>预测该问题在篇章中的答案</del></li>
+</ul>
+</li>
+<li>Verifier: 验证器 [1]</li>
+<li>convLSTM [2]</li>
+</ul>
+<p><a href="https://msd.misuland.com/pd/12136984602514128" target="_blank" rel="noopener">https://msd.misuland.com/pd/12136984602514128</a><br><a href="https://blog.csdn.net/maka_uir/article/details/83650978" target="_blank" rel="noopener">https://blog.csdn.net/maka_uir/article/details/83650978</a></p>
+<pre><code>[1] Hu M, Peng Y, Huang Z, et al. Read+ verify: Machine reading comprehension with unanswerable questions[J]. arXiv preprint arXiv:1808.05759, 2018.
+[2] Shi X , Chen Z , Wang H , et al. Convolutional LSTM Network: A Machine Learning Approach for Precipitation Nowcasting[J]. 2015.</code></pre><h2 id="top3-BERT-N-Gram-Masking-Synthetic-Self-Training"><a href="#top3-BERT-N-Gram-Masking-Synthetic-Self-Training" class="headerlink" title="top3: BERT + N-Gram Masking + Synthetic Self-Training"></a>top3: BERT + N-Gram Masking + Synthetic Self-Training</h2><ul>
+<li>N-Gram Masking: 类似百度的ERNIE模型</li>
+<li>Synthetic Self-Training: BERT官方PPT  </li>
+</ul>
+<p>(这个方法全部在预训练上做改进，没有对bert上层模型做什么改进)<br>Unclear if adding things on top of BERT really helps by very much.  </p>
+<p><a href="https://zhuanlan.zhihu.com/p/63126803" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/63126803</a><br><a href="https://nlp.stanford.edu/seminar/details/jdevlin.pdf" target="_blank" rel="noopener">https://nlp.stanford.edu/seminar/details/jdevlin.pdf</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><a href="http://web.stanford.edu/class/cs224n/posters/15845024.pdf" target="_blank" rel="noopener">http://web.stanford.edu/class/cs224n/posters/15845024.pdf</a></p>
+<pre><code>[1] Ensemble BERT with Data Augmentation and Linguistic Knowledge on SQuAD2.0</code></pre>]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>SQuAD2.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GitHub Pages + Hexo + Next：博客搭建、功能设置及美化</title>
+    <url>/next/</url>
+    <content><![CDATA[<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="搭建博客框架"><a href="#搭建博客框架" class="headerlink" title="搭建博客框架"></a>搭建博客框架</h2><p>搭建流程参照官网中文说明文档：</p>
+<pre><code>https://hexo.io/zh-cn/docs/</code></pre><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>将搭建在本地的博客通过GitHub Pages部署在个人的GitHub中。从而能通过 <code>&lt;你的 GitHub 用户名&gt;.github.io</code> 域名访问博客</p>
+<a id="more"></a>
+
+<p>参考教程：</p>
+<pre><code>https://www.jianshu.com/p/05289a4bc8b2
+https://www.cnblogs.com/jackyroc/p/7681938.html</code></pre><h1 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a>Next 主题</h1><p>部署完成后，即可对博客做一些细节上的优化，增添小工具以及美化界面</p>
+<p>参考教程：</p>
+<pre><code>https://zhuanlan.zhihu.com/p/30836436
+https://io-oi.me/tech/hexo-next-optimization/</code></pre><h2 id="字体调节"><a href="#字体调节" class="headerlink" title="字体调节"></a>字体调节</h2><p>Next主题默认字体为 <code>font-size-medium = 1em</code> ，有点大。通常来讲，Next主题控制字体大小的文件是在主题文件夹中的 <code>source\css_variables</code> 目录下的 <code>base.styl</code> 文件中，修改如下文件 ：</p>
+<pre><code>// Font size
+$font-size-base           = (hexo-config(&apos;font.enable&apos;) and hexo-config(&apos;font.global.size&apos;) is a &apos;unit&apos;) ? unit(hexo-config(&apos;font.global.size&apos;), em) : 1em;
+$font-size-smallest       = .75em;
+$font-size-smaller        = .8125em;
+$font-size-small          = .875em;
+$font-size-medium         = 1em;
+$font-size-large          = 1.125em;
+$font-size-larger         = 1.25em;
+$font-size-largest        = 1.375em;</code></pre><p>把 <code>1em</code> 改为 <code>0.875em</code> 即可:</p>
+<pre><code>// Font size
+$font-size-base           = (hexo-config(&apos;font.enable&apos;) and hexo-config(&apos;font.global.size&apos;) is a &apos;unit&apos;) ? unit(hexo-config(&apos;font.global.size&apos;), em) : .875em;
+$font-size-smallest       = .75em;
+$font-size-smaller        = .8125em;
+$font-size-small          = .875em;
+$font-size-medium         = 1em;
+$font-size-large          = 1.125em;
+$font-size-larger         = 1.25em;
+$font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a href="#插入本地图片" class="headerlink" title="插入本地图片"></a>插入本地图片</h2><p>资源（Asset）代表 source 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等。比方说，如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们。</p>
+<h2 id="添加❤脚注"><a href="#添加❤脚注" class="headerlink" title="添加❤脚注"></a>添加❤脚注</h2><p>更改主题配置文件：</p>
+<pre><code>icon:
+  # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/
+  # `heart` is recommended with animation in red (#ff0000).
+  name: heart #user
+  # If you want to animate the icon, set it to true.
+  animated: true
+  # Change the color of icon, using Hex Code.
+  # color: &quot;#808080&quot;
+  color: &quot;#ff0000&quot;</code></pre><h2 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h2><h3 id="标题优化"><a href="#标题优化" class="headerlink" title="标题优化"></a>标题优化</h3><p>给标题增加详细信息,更改 <code>index.swig</code> 文件 <code>your-hexo-site\themes\next\layout</code>: </p>
+<pre><code>{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+
+	{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %} - {{ theme.keywords }} - {{ config.title }}{{ theme.description }}{% endblock %}</code></pre><h3 id="修改链接"><a href="#修改链接" class="headerlink" title="修改链接"></a>修改链接</h3><p>HEXO默认的文章链接形式为 <code>domain/year/month/day/postname</code> ，默认就是一个四级url，并且可能造成url过长，对搜索引擎是十分不友好的，我们可以改成 <code>domain/postname</code> 的形式。编辑站点 <code>_config.yml</code> 文件，修改其中的 <code>permalink</code> 字段改为 <code>permalink: :title.html</code> 即可。</p>
+<pre><code>permalink: :year/:month/:day/:title/
+permalink: :title/</code></pre><p>参考:</p>
+<pre><code>http://www.ehcoo.com/seo.html</code></pre><h2 id="首页阅读全文设置"><a href="#首页阅读全文设置" class="headerlink" title="首页阅读全文设置"></a>首页阅读全文设置</h2><ol>
+<li>在文章中手动加入 <code>&lt;!--more--&gt;</code> 进行截断</li>
+<li>通过在配置文件中加入代码，自动截断（但实验失败）。</li>
+</ol>
+<h2 id="字数统计及阅读时长"><a href="#字数统计及阅读时长" class="headerlink" title="字数统计及阅读时长"></a>字数统计及阅读时长</h2><p>安装 <code>hexo-wordcount</code> 失败后采用下面方法：</p>
+<pre><code>npm install hexo-symbols-count-time --save</code></pre><p>在配置文件加入设置：</p>
+<pre><code>symbols_count_time:  
+  symbols: true  
+  time: true  
+  total_symbols: true  
+  total_time: true</code></pre><h2 id="阅读次数统计"><a href="#阅读次数统计" class="headerlink" title="阅读次数统计"></a>阅读次数统计</h2><p>主题配置文件设置：</p>
+<pre><code>busuanzi_count:
+  enable: true
+  total_visitors: true
+  total_visitors_icon: user
+  total_views: true
+  total_views_icon: eye
+  post_views: true
+  post_views_icon: eye</code></pre><p>最后上一个看到的大神的网页：</p>
+<pre><code>https://felixxiong.github.io/wechatpublic/</code></pre>]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
         <tag>next</tag>
       </tags>
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2019/12/09/hello-world/</url>
+    <url>/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>

@@ -50,14 +50,14 @@
 <meta name="keywords" content="hexo,next">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub Pages + Hexo + Next：博客搭建、功能设置及美化">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;next&#x2F;index.html">
-<meta property="og:site_name" content="E.Zhang&#39;s Blog">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;next&#x2F;index.html">
+<meta property="og:site_name" content="Hello World 💓">
 <meta property="og:description" content="HexoHexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 搭建博客框架搭建流程参照官网中文说明文档： https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs&#x2F;部署将搭建在本地的博客通过GitHub Pages部署在个人的GitHub中。从而能通过 &amp;lt;你的 GitHub 用户名&amp;gt;.github">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-09T16:44:31.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/10/next/">
+<link rel="canonical" href="http://yoursite.com/next/">
 
 
 <script id="page-configurations">
@@ -69,7 +69,7 @@
   };
 </script>
 
-  <title>GitHub Pages + Hexo + Next：博客搭建、功能设置及美化 | E.Zhang's Blog</title>
+  <title>GitHub Pages + Hexo + Next：博客搭建、功能设置及美化 | Hello World 💓</title>
   
 
 
@@ -113,7 +113,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">E.Zhang's Blog</span>
+        <span class="site-title">Hello World 💓</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -209,7 +209,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/next/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/next/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a.jpg">
@@ -218,7 +218,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="E.Zhang's Blog">
+      <meta itemprop="name" content="Hello World 💓">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -247,6 +247,27 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -260,6 +281,8 @@
         <h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
 <h2 id="搭建博客框架"><a href="#搭建博客框架" class="headerlink" title="搭建博客框架"></a>搭建博客框架</h2><p>搭建流程参照官网中文说明文档：</p>
 <pre><code>https://hexo.io/zh-cn/docs/</code></pre><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>将搭建在本地的博客通过GitHub Pages部署在个人的GitHub中。从而能通过 <code>&lt;你的 GitHub 用户名&gt;.github.io</code> 域名访问博客</p>
+<a id="more"></a>
+
 <p>参考教程：</p>
 <pre><code>https://www.jianshu.com/p/05289a4bc8b2
 https://www.cnblogs.com/jackyroc/p/7681938.html</code></pre><h1 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a>Next 主题</h1><p>部署完成后，即可对博客做一些细节上的优化，增添小工具以及美化界面</p>
@@ -284,7 +307,40 @@ $font-size-medium         = 1em;
 $font-size-large          = 1.125em;
 $font-size-larger         = 1.25em;
 $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a href="#插入本地图片" class="headerlink" title="插入本地图片"></a>插入本地图片</h2><p>资源（Asset）代表 source 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等。比方说，如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们。</p>
-<p>最后上一个看到的大神的网页：</p>
+<h2 id="添加❤脚注"><a href="#添加❤脚注" class="headerlink" title="添加❤脚注"></a>添加❤脚注</h2><p>更改主题配置文件：</p>
+<pre><code>icon:
+  # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/
+  # `heart` is recommended with animation in red (#ff0000).
+  name: heart #user
+  # If you want to animate the icon, set it to true.
+  animated: true
+  # Change the color of icon, using Hex Code.
+  # color: &quot;#808080&quot;
+  color: &quot;#ff0000&quot;</code></pre><h2 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h2><h3 id="标题优化"><a href="#标题优化" class="headerlink" title="标题优化"></a>标题优化</h3><p>给标题增加详细信息,更改 <code>index.swig</code> 文件 <code>your-hexo-site\themes\next\layout</code>: </p>
+<pre><code>{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
+
+	{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %} - {{ theme.keywords }} - {{ config.title }}{{ theme.description }}{% endblock %}</code></pre><h3 id="修改链接"><a href="#修改链接" class="headerlink" title="修改链接"></a>修改链接</h3><p>HEXO默认的文章链接形式为 <code>domain/year/month/day/postname</code> ，默认就是一个四级url，并且可能造成url过长，对搜索引擎是十分不友好的，我们可以改成 <code>domain/postname</code> 的形式。编辑站点 <code>_config.yml</code> 文件，修改其中的 <code>permalink</code> 字段改为 <code>permalink: :title.html</code> 即可。</p>
+<pre><code>permalink: :year/:month/:day/:title/
+permalink: :title/</code></pre><p>参考:</p>
+<pre><code>http://www.ehcoo.com/seo.html</code></pre><h2 id="首页阅读全文设置"><a href="#首页阅读全文设置" class="headerlink" title="首页阅读全文设置"></a>首页阅读全文设置</h2><ol>
+<li>在文章中手动加入 <code>&lt;!--more--&gt;</code> 进行截断</li>
+<li>通过在配置文件中加入代码，自动截断（但实验失败）。</li>
+</ol>
+<h2 id="字数统计及阅读时长"><a href="#字数统计及阅读时长" class="headerlink" title="字数统计及阅读时长"></a>字数统计及阅读时长</h2><p>安装 <code>hexo-wordcount</code> 失败后采用下面方法：</p>
+<pre><code>npm install hexo-symbols-count-time --save</code></pre><p>在配置文件加入设置：</p>
+<pre><code>symbols_count_time:  
+  symbols: true  
+  time: true  
+  total_symbols: true  
+  total_time: true</code></pre><h2 id="阅读次数统计"><a href="#阅读次数统计" class="headerlink" title="阅读次数统计"></a>阅读次数统计</h2><p>主题配置文件设置：</p>
+<pre><code>busuanzi_count:
+  enable: true
+  total_visitors: true
+  total_visitors_icon: user
+  total_views: true
+  total_views_icon: eye
+  post_views: true
+  post_views_icon: eye</code></pre><p>最后上一个看到的大神的网页：</p>
 <pre><code>https://felixxiong.github.io/wechatpublic/</code></pre>
     </div>
 
@@ -299,16 +355,21 @@ $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a 
           </div>
 
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
 
 
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/09/hello-world/" rel="prev" title="Hello World">
+    <a href="/hello-world/" rel="prev" title="Hello World">
       <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/10/SQuAD2-0/" rel="next" title="SQuAD2.0 刷榜top3模型分析">
+    <a href="/SQuAD2-0/" rel="next" title="SQuAD2.0 刷榜top3模型分析">
       SQuAD2.0 刷榜top3模型分析 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -324,6 +385,7 @@ $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -370,7 +432,7 @@ $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a 
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number">1.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建博客框架"><span class="nav-number">1.1.</span> <span class="nav-text">搭建博客框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">1.2.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Next-主题"><span class="nav-number">2.</span> <span class="nav-text">Next 主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字体调节"><span class="nav-number">2.1.</span> <span class="nav-text">字体调节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入本地图片"><span class="nav-number">2.2.</span> <span class="nav-text">插入本地图片</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number">1.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建博客框架"><span class="nav-number">1.1.</span> <span class="nav-text">搭建博客框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">1.2.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Next-主题"><span class="nav-number">2.</span> <span class="nav-text">Next 主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字体调节"><span class="nav-number">2.1.</span> <span class="nav-text">字体调节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入本地图片"><span class="nav-number">2.2.</span> <span class="nav-text">插入本地图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加❤脚注"><span class="nav-number">2.3.</span> <span class="nav-text">添加❤脚注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索引擎优化"><span class="nav-number">2.4.</span> <span class="nav-text">搜索引擎优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题优化"><span class="nav-number">2.4.1.</span> <span class="nav-text">标题优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改链接"><span class="nav-number">2.4.2.</span> <span class="nav-text">修改链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页阅读全文设置"><span class="nav-number">2.5.</span> <span class="nav-text">首页阅读全文设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字数统计及阅读时长"><span class="nav-number">2.6.</span> <span class="nav-text">字数统计及阅读时长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读次数统计"><span class="nav-number">2.7.</span> <span class="nav-text">阅读次数统计</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -442,12 +504,42 @@ $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a 
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">E.Zhang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -474,6 +566,26 @@ $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a 
 
 
 
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
   <script src="/js/local-search.js"></script>
 
@@ -491,6 +603,26 @@ $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a 
   
 
   
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '13e3c1c1250a05aff4c5',
+      clientSecret: '4585b6e7f36bcc6c2aebf8e93fe1856798070969',
+      repo: 'troublemeeter.github.io',
+      owner: 'troublemeeter',
+      admin: ['troublemeeter'],
+      id: 'a49a56f043973fcc57e78460bac40015',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>

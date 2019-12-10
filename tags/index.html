@@ -46,10 +46,11 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
+  <meta name="keywords" content="NLP,AI,人工智能,算法,自然语言处理,机器学习">
+<meta property="og:type" content="website">
 <meta property="og:title" content="标签">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;index.html">
-<meta property="og:site_name" content="E.Zhang&#39;s Blog">
+<meta property="og:site_name" content="Hello World 💓">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-09T16:21:09.000Z">
 <meta name="twitter:card" content="summary">
@@ -66,7 +67,7 @@
   };
 </script>
 
-  <title>标签 | E.Zhang's Blog
+  <title>标签 | Hello World 💓
   </title>
   
 
@@ -111,7 +112,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">E.Zhang's Blog</span>
+        <span class="site-title">Hello World 💓</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -227,10 +228,10 @@
       <div class="post-body">
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-              目前共计 1 个标签
+              目前共计 5 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/next/" style="font-size: 12px; color: #ccc">next</a>
+              <a href="/tags/SQuAD2-0/" style="font-size: 12px; color: #ccc">SQuAD2.0</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/markdown/" style="font-size: 12px; color: #ccc">markdown</a> <a href="/tags/next/" style="font-size: 12px; color: #ccc">next</a> <a href="/tags/parser/" style="font-size: 12px; color: #ccc">parser</a>
             </div>
           </div>
         
@@ -249,6 +250,7 @@
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -301,7 +303,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="E.Zhang"
-      src="/images/avatar.gif">
+      src="/images/a.jpg">
   <p class="site-author-name" itemprop="name">E.Zhang</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -310,20 +312,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -366,12 +368,42 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">E.Zhang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -398,6 +430,26 @@
 
 
 
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
   <script src="/js/local-search.js"></script>
 
@@ -415,6 +467,26 @@
   
 
   
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '13e3c1c1250a05aff4c5',
+      clientSecret: '4585b6e7f36bcc6c2aebf8e93fe1856798070969',
+      repo: 'troublemeeter.github.io',
+      owner: 'troublemeeter',
+      admin: ['troublemeeter'],
+      id: 'f47af1d1eda4d807b02bba32be15120b',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>

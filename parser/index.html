@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Hanlppip install pyhanlp 安装即可项目地址：https:&#x2F;&#x2F;github.com&#x2F;hankcs&#x2F;pyhanlp 基于神经网络的高性能依存句法分析器 输出为CONLL格式中，每个词语占一行，无值列用下划线代替，列的分隔符为制表符 &amp;#39;\t&amp;#39; ，行的分隔符为换行符 &amp;#39;\n&amp;#39;；句子与句子之间用空行分隔。">
+<meta name="keywords" content="parser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用句法分析工具包使用说明：Hanlp、StanfordNLP等">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;parser&#x2F;index.html">
+<meta property="og:site_name" content="Hello World 💓">
+<meta property="og:description" content="Hanlppip install pyhanlp 安装即可项目地址：https:&#x2F;&#x2F;github.com&#x2F;hankcs&#x2F;pyhanlp 基于神经网络的高性能依存句法分析器 输出为CONLL格式中，每个词语占一行，无值列用下划线代替，列的分隔符为制表符 &amp;#39;\t&amp;#39; ，行的分隔符为换行符 &amp;#39;\n&amp;#39;；句子与句子之间用空行分隔。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-10T01:39:52.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/parser/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>常用句法分析工具包使用说明：Hanlp、StanfordNLP等 | Hello World 💓</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello World 💓</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">醉后不知天在水，满船清梦压星河</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/parser/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/a.jpg">
+      <meta itemprop="name" content="E.Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World 💓">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常用句法分析工具包使用说明：Hanlp、StanfordNLP等
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-10 09:39:52" itemprop="dateCreated datePublished" datetime="2019-12-10T09:39:52+08:00">2019-12-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Hanlp"><a href="#Hanlp" class="headerlink" title="Hanlp"></a>Hanlp</h1><p>pip install pyhanlp 安装即可<br>项目地址：<a href="https://github.com/hankcs/pyhanlp" target="_blank" rel="noopener">https://github.com/hankcs/pyhanlp</a></p>
+<p><strong>基于神经网络的高性能依存句法分析器</strong></p>
+<p>输出为CONLL格式中，每个词语占一行，无值列用下划线代替，列的分隔符为制表符 <code>&#39;\t&#39;</code> ，行的分隔符为换行符 <code>&#39;\n&#39;</code>；句子与句子之间用空行分隔。  </p>
+<a id="more"></a>
+<p>CONLL标注格式包含10列，分别为：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">FORM</th>
+<th align="center">LEMMA</th>
+<th align="center">CPOSTAG</th>
+<th align="center">POSTAG</th>
+<th align="center">FEATS</th>
+<th align="center">HEAD</th>
+<th align="center">DEPREL</th>
+<th align="center">PHEAD</th>
+<th align="center">PDEPREL</th>
+</tr>
+</thead>
+</table>
+<p>只用到前８列，其含义分别为：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">id</th>
+<th align="center">name</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">ID</td>
+<td align="center">当前词在句子中的序号，１开始.</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">FORM</td>
+<td align="center">当前词语或标点</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">LEMMA</td>
+<td align="center">当前词语（或标点）的原型或词干，在中文中，此列与FORM相同</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">CPOSTAG</td>
+<td align="center">当前词语的词性（粗粒度）</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">POSTAG</td>
+<td align="center">当前词语的词性（细粒度）</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">FEATS</td>
+<td align="center">句法特征，在本次评测中，此列未被使用，全部以下划线代替。</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">HEAD</td>
+<td align="center">当前词语的中心词</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">DEPREL</td>
+<td align="center">当前词语与中心词的依存关系</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyhanlp <span class="keyword">import</span> *</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">print(HanLP.parseDependency(<span class="string">"徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"</span>))</span></pre></td></tr></table></figure>
+
+<pre><code>1    徐先生    徐先生    nh    nr    _    4    主谓关系    _    _
+2    还    还    d    d    _    4    状中结构    _    _
+3    具体    具体    a    ad    _    4    状中结构    _    _
+4    帮助    帮助    v    v    _    0    核心关系    _    _
+5    他    他    r    r    _    4    兼语    _    _
+6    确定    确定    v    v    _    4    动宾关系    _    _
+7    了    了    u    u    _    6    右附加关系    _    _
+8    把    把    p    p    _    15    状中结构    _    _
+9    画    画    v    v    _    8    介宾关系    _    _
+10    雄鹰    雄鹰    n    n    _    9    动宾关系    _    _
+11    、    、    wp    w    _    12    标点符号    _    _
+12    松鼠    松鼠    n    n    _    10    并列关系    _    _
+13    和    和    c    c    _    14    左附加关系    _    _
+14    麻雀    麻雀    n    n    _    10    并列关系    _    _
+15    作为    作为    v    v    _    6    动宾关系    _    _
+16    主攻    主攻    v    vn    _    17    定中关系    _    _
+17    目标    目标    n    n    _    15    动宾关系    _    _
+18    。    。    wp    w    _    4    标点符号    _    _</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sentence = HanLP.parseDependency(<span class="string">"徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> sentence.iterator():  <span class="comment"># 通过dir()可以查看sentence的方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">"%s --(%s)--&gt; %s"</span> % (word.LEMMA, word.DEPREL, word.HEAD.LEMMA))</span></pre></td></tr></table></figure>
+
+<pre><code>徐先生 --(主谓关系)--&gt; 帮助
+还 --(状中结构)--&gt; 帮助
+具体 --(状中结构)--&gt; 帮助
+帮助 --(核心关系)--&gt; ##核心##
+他 --(兼语)--&gt; 帮助
+确定 --(动宾关系)--&gt; 帮助
+了 --(右附加关系)--&gt; 确定
+把 --(状中结构)--&gt; 作为
+画 --(介宾关系)--&gt; 把
+雄鹰 --(动宾关系)--&gt; 画
+、 --(标点符号)--&gt; 松鼠
+松鼠 --(并列关系)--&gt; 雄鹰
+和 --(左附加关系)--&gt; 麻雀
+麻雀 --(并列关系)--&gt; 雄鹰
+作为 --(动宾关系)--&gt; 确定
+主攻 --(定中关系)--&gt; 目标
+目标 --(动宾关系)--&gt; 作为
+。 --(标点符号)--&gt; 帮助</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">print(dir(sentence))</span></pre></td></tr></table></figure>
+
+<pre><code>[&apos;__class__&apos;, &apos;__delattr__&apos;, &apos;__dict__&apos;, &apos;__dir__&apos;, &apos;__doc__&apos;, &apos;__eq__&apos;, &apos;__format__&apos;, &apos;__ge__&apos;, &apos;__getattribute__&apos;, &apos;__gt__&apos;, &apos;__hash__&apos;, &apos;__init__&apos;, &apos;__init_subclass__&apos;, &apos;__javaclass__&apos;, &apos;__javaobject__&apos;, &apos;__le__&apos;, &apos;__lt__&apos;, &apos;__metaclass__&apos;, &apos;__module__&apos;, &apos;__ne__&apos;, &apos;__new__&apos;, &apos;__reduce__&apos;, &apos;__reduce_ex__&apos;, &apos;__repr__&apos;, &apos;__setattr__&apos;, &apos;__sizeof__&apos;, &apos;__str__&apos;, &apos;__subclasshook__&apos;, &apos;__weakref__&apos;, &apos;edgeArray&apos;, &apos;equals&apos;, &apos;findChildren&apos;, &apos;forEach&apos;, &apos;getClass&apos;, &apos;getEdgeArray&apos;, &apos;getWordArray&apos;, &apos;getWordArrayWithRoot&apos;, &apos;hashCode&apos;, &apos;iterator&apos;, &apos;notify&apos;, &apos;notifyAll&apos;, &apos;spliterator&apos;, &apos;toString&apos;, &apos;wait&apos;, &apos;word&apos;, &apos;wordArray&apos;, &apos;wordArrayWithRoot&apos;]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">word_array = sentence.getWordArray()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># print(word_array[0])</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> word_array:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">"%s --(%s)--&gt; %s"</span> % (word.LEMMA, word.DEPREL, word.HEAD.LEMMA))</span></pre></td></tr></table></figure>
+
+<pre><code>徐先生 --(主谓关系)--&gt; 帮助
+还 --(状中结构)--&gt; 帮助
+具体 --(状中结构)--&gt; 帮助
+帮助 --(核心关系)--&gt; ##核心##
+他 --(兼语)--&gt; 帮助
+确定 --(动宾关系)--&gt; 帮助
+了 --(右附加关系)--&gt; 确定
+把 --(状中结构)--&gt; 作为
+画 --(介宾关系)--&gt; 把
+雄鹰 --(动宾关系)--&gt; 画
+、 --(标点符号)--&gt; 松鼠
+松鼠 --(并列关系)--&gt; 雄鹰
+和 --(左附加关系)--&gt; 麻雀
+麻雀 --(并列关系)--&gt; 雄鹰
+作为 --(动宾关系)--&gt; 确定
+主攻 --(定中关系)--&gt; 目标
+目标 --(动宾关系)--&gt; 作为
+。 --(标点符号)--&gt; 帮助</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 还可以直接遍历子树，从某棵子树的某个节点一路遍历到虚根</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">CoNLLWord = JClass(<span class="string">"com.hankcs.hanlp.corpus.dependency.CoNll.CoNLLWord"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">head = word_array[<span class="number">15</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> head.HEAD:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    head = head.HEAD</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (head == CoNLLWord.ROOT):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        print(head.LEMMA)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        print(<span class="string">"%s --(%s)--&gt; "</span> % (head.LEMMA, head.DEPREL))</span></pre></td></tr></table></figure>
+
+<pre><code>目标 --(动宾关系)--&gt; 
+作为 --(动宾关系)--&gt; 
+确定 --(动宾关系)--&gt; 
+帮助 --(核心关系)--&gt; 
+##核心##</code></pre><h1 id="StanfordNLP"><a href="#StanfordNLP" class="headerlink" title="StanfordNLP"></a>StanfordNLP</h1><p>pip install stanfordnlp 安装即可<br>项目地址：<a href="https://github.com/stanfordnlp/stanfordnlp" target="_blank" rel="noopener">https://github.com/stanfordnlp/stanfordnlp</a><br>依存句法关系符号解释：<a href="https://www.cnblogs.com/sherry-yang/p/9061341.html" target="_blank" rel="noopener">https://www.cnblogs.com/sherry-yang/p/9061341.html</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> stanfordnlp</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">nlp = stanfordnlp.Pipeline(lang=<span class="string">'zh'</span>)</span></pre></td></tr></table></figure>
+
+<pre><code>Use device: gpu
+---
+Loading: tokenize
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_tokenizer.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+---
+Loading: pos
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_tagger.pt&apos;, &apos;pretrain_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd.pretrain.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+---
+Loading: lemma
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_lemmatizer.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+Building an attentional Seq2Seq model...
+Using a Bi-LSTM encoder
+Using soft attention for LSTM.
+Finetune all embeddings.
+[Running seq2seq lemmatizer with edit classifier]
+---
+Loading: depparse
+With settings: 
+{&apos;model_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd_parser.pt&apos;, &apos;pretrain_path&apos;: &apos;/home/haha/stanfordnlp_resources/zh_gsd_models/zh_gsd.pretrain.pt&apos;, &apos;lang&apos;: &apos;zh&apos;, &apos;shorthand&apos;: &apos;zh_gsd&apos;, &apos;mode&apos;: &apos;predict&apos;}
+Done loading processors!
+---</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">doc = nlp(<span class="string">"徐先生还具体帮助他确定了把画雄鹰、松鼠和麻雀作为主攻目标。"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">doc.sentences[<span class="number">0</span>].print_dependencies()</span></pre></td></tr></table></figure>
+
+<pre><code>(&apos;徐&apos;, &apos;2&apos;, &apos;nmod&apos;)
+(&apos;先生&apos;, &apos;4&apos;, &apos;nsubj&apos;)
+(&apos;还&apos;, &apos;4&apos;, &apos;mark&apos;)
+(&apos;具体&apos;, &apos;0&apos;, &apos;root&apos;)
+(&apos;帮助&apos;, &apos;4&apos;, &apos;obj&apos;)
+(&apos;他&apos;, &apos;7&apos;, &apos;nsubj&apos;)
+(&apos;确定&apos;, &apos;4&apos;, &apos;ccomp&apos;)
+(&apos;了&apos;, &apos;7&apos;, &apos;case:aspect&apos;)
+(&apos;把&apos;, &apos;15&apos;, &apos;aux:caus&apos;)
+(&apos;画雄鹰&apos;, &apos;15&apos;, &apos;obj&apos;)
+(&apos;、&apos;, &apos;12&apos;, &apos;punct&apos;)
+(&apos;松鼠&apos;, &apos;10&apos;, &apos;conj&apos;)
+(&apos;和&apos;, &apos;14&apos;, &apos;cc&apos;)
+(&apos;麻雀&apos;, &apos;10&apos;, &apos;conj&apos;)
+(&apos;作&apos;, &apos;7&apos;, &apos;ccomp&apos;)
+(&apos;为&apos;, &apos;15&apos;, &apos;mark&apos;)
+(&apos;主攻&apos;, &apos;18&apos;, &apos;nmod&apos;)
+(&apos;目标&apos;, &apos;16&apos;, &apos;obj&apos;)
+(&apos;。&apos;, &apos;4&apos;, &apos;punct&apos;)</code></pre><h1 id="HIT-LTP"><a href="#HIT-LTP" class="headerlink" title="HIT LTP"></a>HIT LTP</h1><p>项目地址：  </p>
+<ul>
+<li><a href="https://github.com/HIT-SCIR/pyltp" target="_blank" rel="noopener">https://github.com/HIT-SCIR/pyltp</a>  </li>
+<li><a href="https://pyltp.readthedocs.io/zh_CN/latest/" target="_blank" rel="noopener">https://pyltp.readthedocs.io/zh_CN/latest/</a>  </li>
+</ul>
+<p>安装步骤：</p>
+<ul>
+<li>pip install pyltp</li>
+<li>下载模型文件：<a href="http://ltp.ai/download.html" target="_blank" rel="noopener">七牛云</a>，当前模型版本 3.4.0</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>arc.head 表示依存弧的父节点词的索引。ROOT节点的索引是0，第一个词开始的索引依次为1、2、3…  </li>
+<li>arc.relation 表示依存弧的关系。  </li>
+</ul>
+<p>标注集请参考: <a href="https://ltp.readthedocs.io/zh_CN/latest/appendix.html#id5" target="_blank" rel="noopener">https://ltp.readthedocs.io/zh_CN/latest/appendix.html#id5</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyltp <span class="keyword">import</span> Parser</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyltp <span class="keyword">import</span> Segmentor</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyltp <span class="keyword">import</span> Postagger</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dependency_parser</span><span class="params">(sentences)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    output = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> sentence <span class="keyword">in</span> sentences:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        parser = Parser()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        parser.load(<span class="string">'./ltp_data_v3.4.0/parser.model'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        segmentor = Segmentor() </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        segmentor.load(<span class="string">'./ltp_data_v3.4.0/cws.model'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        postagger = Postagger() </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        postagger.load(<span class="string">'./ltp_data_v3.4.0/pos.model'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        words = segmentor.segment(sentence)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        postags = postagger.postag(words)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        arcs = parser.parse(words, postags)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        output.append(&#123;<span class="string">'words'</span>:words,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                       <span class="string">'postags'</span>:postags,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">                       <span class="string">'arcs'</span>:arcs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">                      &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#         print(' '.join(output[0]['words']))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#         print(' '.join(output[0]['postags']))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    segmentor.release() </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    postagger.release()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    parser.release()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> output</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sentences = [<span class="string">'徐先生还具体帮助他确定了把画雄鹰，松鼠和麻雀作为主攻目标。'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">output = dependency_parser(sentences)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Arcs = [each[<span class="string">'arcs'</span>] <span class="keyword">for</span> each <span class="keyword">in</span> output]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[<span class="string">" "</span>.join(<span class="string">"%d:%s"</span> % (arc.head, arc.relation) <span class="keyword">for</span> arc <span class="keyword">in</span> arcs) <span class="keyword">for</span> arcs <span class="keyword">in</span> Arcs]</span></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[&apos;2:ATT 5:SBV 4:ADV 5:ADV 0:HED 5:DBL 5:VOB 7:RAD 10:ADV 7:VOB 10:VOB 5:WP 16:SBV 15:LAD 13:COO 5:COO 18:ATT 16:VOB 5:WP&apos;]</code></pre><h1 id="FudanNLP-FNLP"><a href="#FudanNLP-FNLP" class="headerlink" title="FudanNLP (FNLP)"></a>FudanNLP (FNLP)</h1><p><a href="https://github.com/FudanNLP/fnlp" target="_blank" rel="noopener">https://github.com/FudanNLP/fnlp</a><br>java 接口，且不再更新，现在已经推出FastNLP</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/parser/" rel="tag"># parser</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/SQuAD2-0/" rel="prev" title="SQuAD2.0 刷榜top3模型分析">
+      <i class="fa fa-chevron-left"></i> SQuAD2.0 刷榜top3模型分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/markdown/" rel="next" title="MarkDown 使用细节">
+      MarkDown 使用细节 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hanlp"><span class="nav-number">1.</span> <span class="nav-text">Hanlp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StanfordNLP"><span class="nav-number">2.</span> <span class="nav-text">StanfordNLP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HIT-LTP"><span class="nav-number">3.</span> <span class="nav-text">HIT LTP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FudanNLP-FNLP"><span class="nav-number">4.</span> <span class="nav-text">FudanNLP (FNLP)</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="E.Zhang"
+      src="/images/a.jpg">
+  <p class="site-author-name" itemprop="name">E.Zhang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/troublemeeter" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;troublemeeter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/troublemeeter" title="https:&#x2F;&#x2F;github.com&#x2F;troublemeeter" rel="noopener" target="_blank">GitHub</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">E.Zhang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: ,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '13e3c1c1250a05aff4c5',
+      clientSecret: '4585b6e7f36bcc6c2aebf8e93fe1856798070969',
+      repo: 'troublemeeter.github.io',
+      owner: 'troublemeeter',
+      admin: ['troublemeeter'],
+      id: 'ca80c875970d39075f3240a78caa53e9',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
