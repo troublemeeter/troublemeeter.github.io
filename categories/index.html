@@ -250,7 +250,6 @@
 
           </div>
           
-    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -451,7 +450,7 @@
   }
   </script>
 
-  <script src="/js/local-search.js"></script>
+  <script src="/js/local-search.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -470,25 +469,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: '13e3c1c1250a05aff4c5',
-      clientSecret: '4585b6e7f36bcc6c2aebf8e93fe1856798070969',
-      repo: 'troublemeeter.github.io',
-      owner: 'troublemeeter',
-      admin: ['troublemeeter'],
-      id: 'a676607444a8bc8b150c9a3aff884e61',
-        language: '',
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

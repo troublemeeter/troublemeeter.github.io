@@ -462,7 +462,6 @@ Done loading processors!
 
 
 <pre><code>[&apos;2:ATT 5:SBV 4:ADV 5:ADV 0:HED 5:DBL 5:VOB 7:RAD 10:ADV 7:VOB 10:VOB 5:WP 16:SBV 15:LAD 13:COO 5:COO 18:ATT 16:VOB 5:WP&apos;]</code></pre><h1 id="FudanNLP-FNLP"><a href="#FudanNLP-FNLP" class="headerlink" title="FudanNLP (FNLP)"></a>FudanNLP (FNLP)</h1><p><a href="https://github.com/FudanNLP/fnlp" target="_blank" rel="noopener">https://github.com/FudanNLP/fnlp</a><br>java 接口，且不再更新，现在已经推出FastNLP</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>NLP</category>
@@ -589,7 +588,13 @@ permalink: :title/</code></pre><p>参考:</p>
   # Gitalk&apos;s display language depends on user&apos;s browser or system environment
   # If you want everyone visiting your site to see a uniform language, you can set a force language value
   # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
-  language:</code></pre><p>参考教程：</p>
+  language:</code></pre><p>指定页面不添加评论功能，在文章头部设置 <code>comments: false</code>：</p>
+<pre><code>---
+title: 标签
+date: 2019-12-10 00:21:09
+type: &quot;tags&quot;
+comments: false
+---</code></pre><p>参考教程：</p>
 <pre><code>https://mrluyc.github.io/2019/07/30/HexoNexT%E9%9B%86%E6%88%90Gitalk/</code></pre><h2 id="数学公式支持"><a href="#数学公式支持" class="headerlink" title="数学公式支持"></a>数学公式支持</h2><p>安装 <code>hexo-math</code>：</p>
 <pre><code>$ npm install hexo-math --save</code></pre><p>在配置文件加入设置：</p>
 <pre><code>math:
