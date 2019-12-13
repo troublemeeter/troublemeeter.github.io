@@ -6,11 +6,5 @@ Allow: /categories/
 Allow: /tags/ 
 Allow: /about/ 
 
-Disallow: /js/
-Disallow: /css/
-Disallow: /fonts/
-Disallow: /vendors/
-Disallow: /fancybox/
-
 Sitemap: http://troublemeeter.github.io/sitemap.xml
 Sitemap: http://troublemeeter.github.io/baidusitemap.xml
