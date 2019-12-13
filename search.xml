@@ -558,7 +558,9 @@ $font-size-largest        = 1.375em;</code></pre><h2 id="插入本地图片"><a 
 	{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %} - {{ theme.keywords }} - {{ config.title }}{{ theme.description }}{% endblock %}</code></pre><h3 id="修改链接"><a href="#修改链接" class="headerlink" title="修改链接"></a>修改链接</h3><p>HEXO默认的文章链接形式为 <code>domain/year/month/day/postname</code> ，默认就是一个四级url，并且可能造成url过长，对搜索引擎是十分不友好的，我们可以改成 <code>domain/postname</code> 的形式。编辑站点 <code>_config.yml</code> 文件，修改其中的 <code>permalink</code> 字段改为 <code>permalink: :title.html</code> 即可。</p>
 <pre><code>permalink: :year/:month/:day/:title/
 permalink: :title/</code></pre><p>参考:</p>
-<pre><code>http://www.ehcoo.com/seo.html</code></pre><h2 id="首页阅读全文设置"><a href="#首页阅读全文设置" class="headerlink" title="首页阅读全文设置"></a>首页阅读全文设置</h2><ol>
+<pre><code>http://www.ehcoo.com/seo.html</code></pre><h3 id="SOE配置"><a href="#SOE配置" class="headerlink" title="SOE配置"></a>SOE配置</h3><p>参考：</p>
+<pre><code>https://www.jianshu.com/p/86557c34b671
+https://blog.junyu.io/posts/0008-blog-seo.html</code></pre><h2 id="首页阅读全文设置"><a href="#首页阅读全文设置" class="headerlink" title="首页阅读全文设置"></a>首页阅读全文设置</h2><ol>
 <li>在文章中手动加入 <code>&lt;!--more--&gt;</code> 进行截断</li>
 <li>通过在配置文件中加入代码，自动截断（但实验失败）。</li>
 </ol>
