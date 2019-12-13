@@ -12,5 +12,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: https://troublemeeter.github.io/sitemap.xml
-Sitemap: https://troublemeeter.github.io/baidusitemap.xml
+Sitemap: http://troublemeeter.github.io/sitemap.xml
+Sitemap: http://troublemeeter.github.io/baidusitemap.xml
