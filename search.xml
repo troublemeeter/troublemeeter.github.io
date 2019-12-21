@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo 博客常用操作命令</title>
+    <url>/hexo-command/</url>
+    <content><![CDATA[<p>可参考官网详细教程</p>
+<pre><code>https://hexo.io/zh-cn/docs/</code></pre><a id="more"></a>
+
+<p>hexo安装以后，可以使用以下两种方式执行 Hexo：  </p>
+<ol>
+<li><code>npx hexo &lt;command&gt;</code>  </li>
+<li>将 Hexo 所在的目录下的 node_modules 添加到环境变量之中即可直接使用 <code>hexo &lt;command&gt;</code>：<br> <code>echo &#39;PATH=&quot;$PATH:./node_modules/.bin&quot;&#39; &gt;&gt; ~/.profile</code></li>
+</ol>
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>新建内容。如果没有设置 layout 的话，默认使用 _config.yml 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
+<pre><code>$ hexo new [layout] &lt;title&gt;
+$ hexo new &quot;post title with whitespace&quot;</code></pre><h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><p>生成静态文件:</p>
+<pre><code>$ hexo generate
+$ hexo g</code></pre><h3 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h3><p>草稿发布:</p>
+<pre><code>$ hexo publish [layout] &lt;filename&gt;</code></pre><h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><p>开启服务:</p>
+<pre><code>$ hexo server
+$ hexo s</code></pre><h3 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h3><p>部署网站:</p>
+<pre><code>$ hexo deploy
+$ hexo d</code></pre><h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><p>本地开启服务：</p>
+<pre><code>$ npx hexo g &amp; npx hexo s</code></pre><p>上传部署：</p>
+<pre><code>$ npx hexo g &amp; npx hexo s</code></pre>]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NLTK + Stanford NLP 进行命名实体识别和词性标注</title>
+    <url>/stanford-nltk/</url>
+    <content><![CDATA[<p>NLTK 中使用 Stanford NLP 工具包进行NER和POS任务。</p>
+<a id="more"></a>
+
+<h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><ol>
+<li>下载<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;nlp.stanford.edu&#x2F;software&#x2F;CRF-NER.html</span></pre></td></tr><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;nlp.stanford.edu&#x2F;software&#x2F;tagger.html</span></pre></td></tr></table></figure></li>
+<li>解压  <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">unzip stanford-ner-2018-10-16.zip</span></pre></td></tr><tr><td class="code"><pre><span class="line">unzip stanford-postagger-full-2018-10-16.zip</span></pre></td></tr></table></figure></li>
+<li>添加 <code>CLASSPATH</code> ，修改 <code>.bashrc</code> 文件:<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_NLTK_PATH=/home/haha/stanford_nltk  </span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_NER_PATH=<span class="variable">$STANFORD_NLTK_PATH</span>/stanford-ner-2018-10-16</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_POS_PATH=<span class="variable">$STANFORD_NLTK_PATH</span>/stanford-postagger-full-2018-10-16</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/home/haha/java/jdk-13.0.1  </span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>  </span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$STANFORD_NER_PATH</span>/stanford-ner.jar:<span class="variable">$STANFORD_POS_PATH</span>/stanford-postagger.jar</span></pre></td></tr></table></figure></li>
+<li>添加 <code>STANFORD_MODELS</code> ，修改 <code>.bashrc</code> 文件:<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_MODELS=<span class="variable">$STANFORD_NER_PATH</span>/classifiers:<span class="variable">$STANFORD_POS_PATH</span>/models</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="函数使用"><a href="#函数使用" class="headerlink" title="函数使用"></a>函数使用</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> StanfordNERTagger</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> StanfordPOSTagger</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">pos_tagger = StanfordPOSTagger(<span class="string">'english-bidirectional-distsim.tagger'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">ner_tagger = StanfordNERTagger(<span class="string">'english.all.3class.distsim.crf.ser.gz'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">tokens = [<span class="string">'The'</span>, <span class="string">'suspect'</span>, <span class="string">'dumped'</span>, <span class="string">'the'</span>, <span class="string">'dead'</span>, <span class="string">'body'</span>, <span class="string">'into'</span>, <span class="string">'a'</span>, <span class="string">'local'</span>, <span class="string">'reservoir'</span>, <span class="string">'.'</span>]</span></pre></td></tr><tr><td class="code"><pre><span class="line">pos = [each[<span class="number">1</span>] <span class="keyword">for</span> each <span class="keyword">in</span> pos_tagger.tag(tokens)]</span></pre></td></tr><tr><td class="code"><pre><span class="line">ner = [each[<span class="number">1</span>] <span class="keyword">for</span> each <span class="keyword">in</span> ner_tagger.tag(tokens)]</span></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+      <tags>
+        <tag>stanford</tag>
+        <tag>nltk</tag>
+        <tag>ner</tag>
+        <tag>pos</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>机器学习面试知识点总结</title>
     <url>/ml-overview/</url>
     <content><![CDATA[<p>对面试中机器学习模型常碰到的问题进行总结对比。</p>
@@ -237,7 +292,8 @@ warmup_steps ：4000</code></pre>]]></content>
 
 <p>行内标签</p>
 <pre><code>`&lt;你的 GitHub 用户名&gt;.github.io`</code></pre><p>文字居中</p>
-<pre><code>&lt;center&gt;文字    &lt;/center&gt;</code></pre>]]></content>
+<pre><code>&lt;center&gt;文字    &lt;/center&gt;</code></pre><p>代码块插入</p>
+<pre><code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> *</span></pre></td></tr><tr><td class="code"><pre><span class="line">print(<span class="string">''</span>)</span></pre></td></tr></table></figure></code></pre>]]></content>
       <categories>
         <category>blog</category>
       </categories>
