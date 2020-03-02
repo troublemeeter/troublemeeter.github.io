@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>NLP 汇总链接合集</title>
+    <url>/nlp-url-collection/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ol>
+<li>中文自然语言处理 Chinese NLP<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https:&#x2F;&#x2F;chinesenlp.xyz&#x2F;#&#x2F;zh&#x2F;docs&#x2F;</span></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>NLP</category>
+      </categories>
+  </entry>
+  <entry>
     <title>常见机器学习分类模型Python实现</title>
     <url>/classification-models/</url>
     <content><![CDATA[<p>机器学习分类模型代码实现：KNN, LDA, NB, LR, CART, SVM, RF, XGBOOST, LightGBDT</p>
@@ -1357,7 +1370,13 @@ date: 2019-12-10 17:50:42
 tags:
 mathjax: true
 ---</code></pre><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>不喜欢五颜六色，所以暂时未处理。</p>
-<h2 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h2><p>制作好微信收款码和支付宝收款码，保存至<code>themes/next/source/images</code>。并修改主题配置文件如下：</p>
+<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><pre><code>https://blog.csdn.net/White_Idiot/article/details/80685990</code></pre><p>迁移完后，相关命令：新建Markdown文章，编辑文章</p>
+<pre><code>hexo new &quot;post-name&quot;</code></pre><p>将相关更改推送到hexo分支</p>
+<pre><code>git add
+git commit -m &quot;...&quot;
+git push origin hexo</code></pre><p>将静态文件推送到master分支</p>
+<pre><code>hexo clean # 如果配置文件没有更改，忽略该命令
+hexo g -d</code></pre><h2 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h2><p>制作好微信收款码和支付宝收款码，保存至<code>themes/next/source/images</code>。并修改主题配置文件如下：</p>
 <pre><code># Reward (Donate)
 # Front-matter variable (unsupport animation).
 reward_settings:

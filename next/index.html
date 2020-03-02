@@ -261,7 +261,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.5k</span>
+              <span>4.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -389,7 +389,13 @@ date: 2019-12-10 17:50:42
 tags:
 mathjax: true
 ---</code></pre><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>不喜欢五颜六色，所以暂时未处理。</p>
-<h2 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h2><p>制作好微信收款码和支付宝收款码，保存至<code>themes/next/source/images</code>。并修改主题配置文件如下：</p>
+<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><pre><code>https://blog.csdn.net/White_Idiot/article/details/80685990</code></pre><p>迁移完后，相关命令：新建Markdown文章，编辑文章</p>
+<pre><code>hexo new &quot;post-name&quot;</code></pre><p>将相关更改推送到hexo分支</p>
+<pre><code>git add
+git commit -m &quot;...&quot;
+git push origin hexo</code></pre><p>将静态文件推送到master分支</p>
+<pre><code>hexo clean # 如果配置文件没有更改，忽略该命令
+hexo g -d</code></pre><h2 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h2><p>制作好微信收款码和支付宝收款码，保存至<code>themes/next/source/images</code>。并修改主题配置文件如下：</p>
 <pre><code># Reward (Donate)
 # Front-matter variable (unsupport animation).
 reward_settings:
@@ -505,7 +511,7 @@ reward_settings:
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number">1.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建博客框架"><span class="nav-number">1.1.</span> <span class="nav-text">搭建博客框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">1.2.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Next-主题"><span class="nav-number">2.</span> <span class="nav-text">Next 主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字体调节"><span class="nav-number">2.1.</span> <span class="nav-text">字体调节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入本地图片"><span class="nav-number">2.2.</span> <span class="nav-text">插入本地图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加❤脚注"><span class="nav-number">2.3.</span> <span class="nav-text">添加❤脚注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索引擎优化"><span class="nav-number">2.4.</span> <span class="nav-text">搜索引擎优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题优化"><span class="nav-number">2.4.1.</span> <span class="nav-text">标题优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改链接"><span class="nav-number">2.4.2.</span> <span class="nav-text">修改链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOE配置"><span class="nav-number">2.4.3.</span> <span class="nav-text">SOE配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页阅读全文设置"><span class="nav-number">2.5.</span> <span class="nav-text">首页阅读全文设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字数统计及阅读时长"><span class="nav-number">2.6.</span> <span class="nav-text">字数统计及阅读时长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读次数统计"><span class="nav-number">2.7.</span> <span class="nav-text">阅读次数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评论功能"><span class="nav-number">2.8.</span> <span class="nav-text">评论功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学公式支持"><span class="nav-number">2.9.</span> <span class="nav-text">数学公式支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码高亮"><span class="nav-number">2.10.</span> <span class="nav-text">代码高亮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打赏功能"><span class="nav-number">2.11.</span> <span class="nav-text">打赏功能</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number">1.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建博客框架"><span class="nav-number">1.1.</span> <span class="nav-text">搭建博客框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">1.2.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Next-主题"><span class="nav-number">2.</span> <span class="nav-text">Next 主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字体调节"><span class="nav-number">2.1.</span> <span class="nav-text">字体调节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入本地图片"><span class="nav-number">2.2.</span> <span class="nav-text">插入本地图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加❤脚注"><span class="nav-number">2.3.</span> <span class="nav-text">添加❤脚注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索引擎优化"><span class="nav-number">2.4.</span> <span class="nav-text">搜索引擎优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题优化"><span class="nav-number">2.4.1.</span> <span class="nav-text">标题优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改链接"><span class="nav-number">2.4.2.</span> <span class="nav-text">修改链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOE配置"><span class="nav-number">2.4.3.</span> <span class="nav-text">SOE配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页阅读全文设置"><span class="nav-number">2.5.</span> <span class="nav-text">首页阅读全文设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字数统计及阅读时长"><span class="nav-number">2.6.</span> <span class="nav-text">字数统计及阅读时长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读次数统计"><span class="nav-number">2.7.</span> <span class="nav-text">阅读次数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评论功能"><span class="nav-number">2.8.</span> <span class="nav-text">评论功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学公式支持"><span class="nav-number">2.9.</span> <span class="nav-text">数学公式支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码高亮"><span class="nav-number">2.10.</span> <span class="nav-text">代码高亮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迁移"><span class="nav-number">2.11.</span> <span class="nav-text">迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打赏功能"><span class="nav-number">2.12.</span> <span class="nav-text">打赏功能</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -521,7 +527,7 @@ reward_settings:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -575,7 +581,7 @@ reward_settings:
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -589,7 +595,7 @@ reward_settings:
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">44 分钟</span>
+    <span title="站点阅读时长">45 分钟</span>
 </div>
 
         
