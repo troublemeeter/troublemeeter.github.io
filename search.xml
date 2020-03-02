@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MySQL 8.0.19 Windows以及Navicat15破解版安装教程</title>
+    <url>/install-mysql/</url>
+    <content><![CDATA[<p>Windows10系统<br>MySQL安装版本：8.0.19<br>Navicat安装版本：premium 15 for mysql</p>
+<p>Hint:</p>
+<pre><code>SQL为结构化查询语句
+MySQL, SQL Server, Oracle等为数据库管理系统
+Navicat, SQLyog等为数据库管理工具</code></pre><a id="more"></a>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网下载地址，选择64位安装包：mysql-8.0.19-winx64.zip。</p>
+<pre><code>https://dev.mysql.com/downloads/mysql/</code></pre><p>然而下载速度很慢，可以切换国内镜像。搜狐镜像也比较慢，网易镜像速度飞快。</p>
+<pre><code>http://mirrors.163.com/mysql/Downloads/MySQL-8.0/
+http://mirrors.sohu.com/mysql/MySQL-8.0/</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><p>解压压缩包至指定的安装目录如：<code>D:\Program\MySQL</code>。</p>
+<h3 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h3><p>手动新建配置文件<code>my.ini</code>，写入内容（无需手动创建data文件夹）：</p>
+<pre><code>[mysqld]
+# 设置3306端口
+port=3306
+# 设置mysql的安装目录
+basedir=D:\Program\MySQL
+# 设置mysql数据库的数据的存放目录
+datadir=D:\Program\MySQL\data
+# 允许最大连接数
+max_connections=200
+# 允许连接失败的次数。
+max_connect_errors=10
+# 服务端使用的字符集默认为utf8mb4
+character-set-server=utf8mb4
+# 创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB
+# 默认使用“mysql_native_password”插件认证
+#mysql_native_password
+default_authentication_plugin=mysql_native_password
+[mysql]
+# 设置mysql客户端默认字符集
+default-character-set=utf8mb4
+[client]
+# 设置mysql客户端连接服务端时默认使用的端口
+port=3306
+default-character-set=utf8mb4</code></pre><h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><p>管理员身份打开cmd窗口，执行如下命令，将生成root用户的初始密码，用作后续登录。</p>
+<pre><code>mysqld --initialize --user=mysql --console</code></pre><h2 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h2><ol>
+<li>执行命令：<code>mysqld -install</code></li>
+<li>启动服务：<code>net start mysql</code></li>
+<li>登录数据库：<code>mysql -u root -p</code>，并输入刚刚得到的密码</li>
+<li>修改密码：<code>alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;yourpassword&#39;</code></li>
+<li>退出：<code>exit</code></li>
+</ol>
+<h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><p>若安装过程中报错，<code>VCRUNTIME140_1.dll</code>问题，微软官网下载适用于Visual Studio 2015、2017 和 2019 的 Microsoft Visual C++ 可再发行软件包：</p>
+<pre><code>https://support.microsoft.com/zh-cn/help/2977003/the-latest-supported-visual-c-downloads</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><pre><code>https://blog.csdn.net/qq_37350706/article/details/81707862</code></pre><h1 id="Navicat"><a href="#Navicat" class="headerlink" title="Navicat"></a>Navicat</h1><p>参考如下，玄学破解，需要多试几次。</p>
+<pre><code>https://www.cnblogs.com/runw/p/12255962.html</code></pre><p>官方使用手册</p>
+<pre><code>https://www.navicat.com.cn/support/online-manual</code></pre>]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NLP 汇总链接合集</title>
     <url>/nlp-url-collection/</url>
     <content><![CDATA[<a id="more"></a>
