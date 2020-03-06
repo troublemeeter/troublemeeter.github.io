@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://troublemeeter.github.io/sublime-sql/</loc>
+    
+    <lastmod>2020-03-05T14:51:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://troublemeeter.github.io/learn-sql/</loc>
     
     <lastmod>2020-03-03T10:35:02.000Z</lastmod>

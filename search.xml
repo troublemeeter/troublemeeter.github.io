@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>sublime中配置sqltools连接数据库</title>
+    <url>/sublime-sql/</url>
+    <content><![CDATA[<p>利用sublime插件sqltools，实现sublime连接数据库，在sublime中优雅的写SQL。</p>
+<a id="more"></a>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>在package control中安装SQLTOOLS</p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>配置connection设置文件：首选项 - Package Settings - SQLTools - Connecttions:</p>
+<pre><code>{
+    &quot;connections&quot;: {
+        &quot;my_local&quot;: {
+            &quot;type&quot;    : &quot;mysql&quot;,
+            &quot;host&quot;    : &quot;127.0.0.1&quot;,
+            &quot;port&quot;    : &quot;3306&quot;,
+            &quot;username&quot;: &quot;root&quot;,
+            &quot;password&quot;: &quot;0823&quot;,
+            &quot;database&quot;: &quot;myemployees&quot;,
+            &quot;encoding&quot;: &quot;utf-8&quot;
+        },
+    },
+    &quot;default&quot;: &quot;my_local&quot;
+}</code></pre><p>配置setting设置文件：首选项 - Package Settings - SQLTools - Settings:</p>
+<pre><code>{
+    &quot;cli&quot;:
+    {
+        &quot;mysql&quot;: &quot;D:/Program/MySQL/bin/mysql.exe&quot;
+    }
+}</code></pre><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><ol>
+<li><p>快捷键<code>ctrl+alt+e</code>进行数据库选择</p>
+</li>
+<li><p>选择数据库后，键入sql语句，光标定位在sql语句上，快捷键<code>ctrl+e+e</code>，运行语句</p>
+</li>
+</ol>
+<h1 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h1><p>安装SqlBeautifier插件美化SQL语句，命令：<code>ctrl+k</code> + <code>ctrl+f</code> </p>
+]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQL学习教程</title>
     <url>/learn-sql/</url>
     <content><![CDATA[<p><em>来自尚硅谷MySQL课程学习笔记</em></p>
