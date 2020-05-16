@@ -48,18 +48,15 @@
   };
 </script>
 
-  <meta name="description" content="NLTK 中使用 Stanford NLP 工具包进行NER和POS任务。">
-<meta name="keywords" content="stanford,nltk,ner,pos">
-<meta property="og:type" content="article">
-<meta property="og:title" content="NLTK + Stanford NLP 进行命名实体识别和词性标注">
-<meta property="og:url" content="https:&#x2F;&#x2F;troublemeeter.github.io&#x2F;stanford-nltk&#x2F;index.html">
+  <meta name="keywords" content="NLP,AI,人工智能,算法,自然语言处理,机器学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello World 💓">
+<meta property="og:url" content="https:&#x2F;&#x2F;troublemeeter.github.io&#x2F;tags&#x2F;pytorch&#x2F;index.html">
 <meta property="og:site_name" content="Hello World 💓">
-<meta property="og:description" content="NLTK 中使用 Stanford NLP 工具包进行NER和POS任务。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-20T03:44:10.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://troublemeeter.github.io/stanford-nltk/">
+<link rel="canonical" href="https://troublemeeter.github.io/tags/pytorch/">
 
 
 <script id="page-configurations">
@@ -67,11 +64,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true
+    isPost: false
   };
 </script>
 
-  <title>NLTK + Stanford NLP 进行命名实体识别和词性标注 | Hello World 💓</title>
+  <title>标签: pytorch | Hello World 💓</title>
   
 
 
@@ -206,158 +203,54 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://troublemeeter.github.io/stanford-nltk/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a.jpg">
-      <meta itemprop="name" content="E.Zhang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello World 💓">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          NLTK + Stanford NLP 进行命名实体识别和词性标注
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h1 class="collection-header">pytorch
+          <small>标签</small>
         </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-20 11:44:10" itemprop="dateCreated datePublished" datetime="2019-12-20T11:44:10+08:00">2019-12-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NLP/" itemprop="url" rel="index">
-                    <span itemprop="name">NLP</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p>NLTK 中使用 Stanford NLP 工具包进行NER和POS任务。</p>
-<a id="more"></a>
-
-<h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><ol>
-<li>下载<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;nlp.stanford.edu&#x2F;software&#x2F;CRF-NER.html</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;nlp.stanford.edu&#x2F;software&#x2F;tagger.html</span></pre></td></tr></table></figure></li>
-<li>解压  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">unzip stanford-ner-2018-10-16.zip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">unzip stanford-postagger-full-2018-10-16.zip</span></pre></td></tr></table></figure></li>
-<li>添加 <code>CLASSPATH</code> ，修改 <code>.bashrc</code> 文件:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_NLTK_PATH=/home/haha/stanford_nltk  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_NER_PATH=<span class="variable">$STANFORD_NLTK_PATH</span>/stanford-ner-2018-10-16</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_POS_PATH=<span class="variable">$STANFORD_NLTK_PATH</span>/stanford-postagger-full-2018-10-16</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/home/haha/java/jdk-13.0.1  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$STANFORD_NER_PATH</span>/stanford-ner.jar:<span class="variable">$STANFORD_POS_PATH</span>/stanford-postagger.jar</span></pre></td></tr></table></figure></li>
-<li>添加 <code>STANFORD_MODELS</code> ，修改 <code>.bashrc</code> 文件:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> STANFORD_MODELS=<span class="variable">$STANFORD_NER_PATH</span>/classifiers:<span class="variable">$STANFORD_POS_PATH</span>/models</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="函数使用"><a href="#函数使用" class="headerlink" title="函数使用"></a>函数使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> StanfordNERTagger</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> StanfordPOSTagger</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pos_tagger = StanfordPOSTagger(<span class="string">'english-bidirectional-distsim.tagger'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">ner_tagger = StanfordNERTagger(<span class="string">'english.all.3class.distsim.crf.ser.gz'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">tokens = [<span class="string">'The'</span>, <span class="string">'suspect'</span>, <span class="string">'dumped'</span>, <span class="string">'the'</span>, <span class="string">'dead'</span>, <span class="string">'body'</span>, <span class="string">'into'</span>, <span class="string">'a'</span>, <span class="string">'local'</span>, <span class="string">'reservoir'</span>, <span class="string">'.'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">pos = [each[<span class="number">1</span>] <span class="keyword">for</span> each <span class="keyword">in</span> pos_tagger.tag(tokens)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">ner = [each[<span class="number">1</span>] <span class="keyword">for</span> each <span class="keyword">in</span> ner_tagger.tag(tokens)]</span></pre></td></tr></table></figure>
-    </div>
-
-    
-    
-    
-        <div class="reward-container">
-  <div>🤣~疯狂暗示~🤣</div>
-  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="E.Zhang 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.jpg" alt="E.Zhang 支付宝">
-        <p>支付宝</p>
       </div>
 
-  </div>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/stanford/" rel="tag"># stanford</a>
-              <a href="/tags/nltk/" rel="tag"># nltk</a>
-              <a href="/tags/ner/" rel="tag"># ner</a>
-              <a href="/tags/pos/" rel="tag"># pos</a>
-          </div>
-
-        
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
+      
+    <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
     </div>
-  </div>
 
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/ml-overview/" rel="prev" title="机器学习面试知识点总结">
-      <i class="fa fa-chevron-left"></i> 机器学习面试知识点总结
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/hexo-command/" rel="next" title="Hexo 博客常用操作命令">
-      Hexo 博客常用操作命令 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-05-15T17:52:27+08:00"
+              content="2020-05-15">
+          05-15
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/pytorch-tutorial/" itemprop="url">
+            <span itemprop="name">Pytorch常用操作</span>
+          </a>
+      </h2>
+
+    </header>
   </article>
+
+    </div>
+  </div>
   
   
   
 
-  </div>
+  
+
 
 
           </div>
           
-    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -404,7 +297,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装环境"><span class="nav-number">1.</span> <span class="nav-text">安装环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数使用"><span class="nav-number">2.</span> <span class="nav-text">函数使用</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -587,25 +479,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: '13e3c1c1250a05aff4c5',
-      clientSecret: '4585b6e7f36bcc6c2aebf8e93fe1856798070969',
-      repo: 'troublemeeter.github.io',
-      owner: 'troublemeeter',
-      admin: ['troublemeeter'],
-      id: '11b169b0879175fef8d96fc6213c763f',
-        language: '',
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
 
 </body>
 </html>
